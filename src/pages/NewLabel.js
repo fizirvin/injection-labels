@@ -34,59 +34,70 @@ class NewLabel extends Component {
 
     renderClient = () =>{
         return ( 
-            <div className='input-container'>
-                <div>
-                    <label htmlFor='header'>Header: </label><input type='text' id='header' name='header' value={this.state.header} onChange={this.onInput} maxLength='15' required></input>
-                </div>
-                <div>
-                    <label htmlFor='color'>Color: </label><input type='color' id='color' name='color' value={this.state.color} onChange={this.onInput} required></input>
+            <tbody>
+                <tr>
+                    <td><label htmlFor='header'>Header: </label></td>
+                    <td><input type='text' id='header' name='header' value={this.state.header} onChange={this.onInput} maxLength='15' required></input></td>
+                </tr>
+                <tr>
+                    <td><label htmlFor='color'>Color: </label></td>
+                    <td><input type='color' id='color' name='color' value={this.state.color} onChange={this.onInput} required></input>
                     <label>text: </label>
                     <input type="radio" id="white" name="text" value='white' onChange={this.onInput} checked={this.state.text === 'white'? true : false} required></input>
                     <label htmlFor="white">White</label>
                     <input type="radio" id="black" name="text" value='black' onChange={this.onInput} checked={this.state.text === 'black'? true : false} required></input>
-                    <label htmlFor="black">Black</label>
-                </div>
-                <div>
-                    <label htmlFor='intRef'>Internal Ref: </label><input type='text' id='intRef' name='intRef' value={this.state.intRef} onChange={this.onInput} maxLength='15' required></input>
-                </div>
-                <div>
-                    <label htmlFor='clientRef'>Client Ref: </label><input type='text' id='clientRef' name='clientRef' value={this.state.clientRef} onChange={this.onInput} maxLength='15' required></input>
-                </div>
-                <div>
-                    <label htmlFor='pieces'>Pieces: </label><input type='number' id='pieces' name='pieces' value={this.state.pieces} onChange={this.onInput} min="20" max="500" required></input>
-                </div>
-                <div>
-                    <label>Certification: </label>
-                    <input type="radio" id="true" name="certification" value={true} onChange={this.onInput} checked={this.state.certification === 'true'? true : false} required></input>
+                    <label htmlFor="black">Black</label></td>
+                </tr>
+                <tr>
+                    <td><label htmlFor='intRef'>Internal Ref: </label></td>
+                    <td><input type='text' id='intRef' name='intRef' value={this.state.intRef} onChange={this.onInput} maxLength='15' required></input></td>
+                </tr>
+                <tr>
+                    <td><label htmlFor='clientRef'>Client Ref: </label></td>
+                    <td> <input type='text' id='clientRef' name='clientRef' value={this.state.clientRef} onChange={this.onInput} maxLength='15' required></input></td>
+                </tr>
+                <tr>
+                    <td><label htmlFor='pieces'>Pieces: </label></td>
+                    <td><input type='number' id='pieces' name='pieces' value={this.state.pieces} onChange={this.onInput} min="20" max="500" required></input></td>
+                </tr>
+                <tr>
+                    <td><label>Certification: </label></td>
+                    <td><input type="radio" id="true" name="certification" value={true} onChange={this.onInput} checked={this.state.certification === 'true'? true : false} required></input>
                     <label htmlFor="true">Yes</label>
                     <input type="radio" id="false" name="certification" value={false} onChange={this.onInput} checked={this.state.certification === 'false'? true : false} required></input>
-                    <label htmlFor="false">No</label>
-                </div>
-            </div>
+                    <label htmlFor="false">No</label></td>
+                </tr>
+            </tbody>
         )
     }
 
     renderPlastic = () =>{
         return ( 
-            <div className='input-container'>
-                <div>
-                    <label htmlFor='header'>Header: </label><input type='text' id='header' name='header' value={this.state.header} onChange={this.onInput} maxLength='15' required></input>
-                </div>
-                <div>
-                    <label htmlFor='color'>Color: </label><input type='color' id='color' name='color' value={this.state.color} onChange={this.onInput} required></input>
-                    <label>text: </label>
-                    <input type="radio" id="white" name="text" value='white' onChange={this.onInput} checked={this.state.text === 'white'? true : false} required></input>
-                    <label htmlFor="white">White</label>
-                    <input type="radio" id="black" name="text" value='black' onChange={this.onInput} checked={this.state.text === 'black'? true : false} required></input>
-                    <label htmlFor="black">Black</label>
-                </div>
-                <div>
-                    <label htmlFor='intRef'>Internal Ref: </label><input type='text' id='intRef' name='intRef' value={this.state.intRef} onChange={this.onInput} maxLength='15' required></input>
-                </div>
-                <div>
-                    <label htmlFor='pieces'>Pieces: </label><input type='number' id='pieces' name='pieces' value={this.state.pieces} onChange={this.onInput} min="20" max="500" required></input>
-                </div>
-            </div>
+            <tbody>
+                <tr>
+                    <td><label htmlFor='header'>Header: </label></td>
+                    <td><input type='text' id='header' name='header' value={this.state.header} onChange={this.onInput} maxLength='15' required></input></td>
+                </tr>
+                <tr>
+                    <td><label htmlFor='color'>Color: </label></td>
+                    <td>
+                        <input type='color' id='color' name='color' value={this.state.color} onChange={this.onInput} required></input>
+                        <label> text: </label>
+                        <input type="radio" id="white" name="text" value='white' onChange={this.onInput} checked={this.state.text === 'white'? true : false} required></input>
+                        <label htmlFor="white">White</label>
+                        <input type="radio" id="black" name="text" value='black' onChange={this.onInput} checked={this.state.text === 'black'? true : false} required></input>
+                        <label htmlFor="black">Black</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label htmlFor='intRef'>Internal Ref: </label></td>
+                    <td><input type='text' id='intRef' name='intRef' value={this.state.intRef} onChange={this.onInput} maxLength='15' required></input></td>
+                </tr>
+                <tr>
+                    <td><label htmlFor='pieces'>Pieces: </label></td>
+                    <td><input type='number' id='pieces' name='pieces' value={this.state.pieces} onChange={this.onInput} min="20" max="500" required></input></td>
+                </tr>
+            </tbody>
         )
     }
 
@@ -100,18 +111,22 @@ class NewLabel extends Component {
     return ReactDOM.createPortal(
         <div className="Modal">
           <div className="modal-content">
+              <h2>Set New Label</h2>
           <form onSubmit={this.onSubmit}>
-            <div> 
-                <label htmlFor='type'>Label type: </label>
-                <select id='type' name='type' onChange={this.onInput} defaultValue=''>
-                    <option disabled value="">select</option>
-                    <option value="plastic">Plastic</option>
-                    <option value="client">Client</option>
-                </select>
-            </div>
-            <div>
-                {this.renderForm()}
-            </div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><label htmlFor='type'>Label type: </label></td>
+                            <td><select id='type' name='type' onChange={this.onInput} defaultValue=''>
+                                    <option disabled value="">select</option>
+                                    <option value="plastic">Plastic</option>
+                                    <option value="client">Client</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                    {this.renderForm()}
+                </table>
             <Link to="/"><button type="button">Close</button></Link>
             <button type="button" onClick={this.showState}>state</button>
             <input type="submit" value="Submit"></input>

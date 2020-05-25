@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
 import NewLabel from './pages/NewLabel'
+import Labels from './pages/Labels'
 
 import './app.css';
 
@@ -19,6 +20,21 @@ class App extends Component {
     const query = `query{
       labels {
         _id
+        header
+        intRef
+        clientRef
+        certification
+        pieces
+        color
+        text
+      }
+      plastics {
+        _id
+        header
+        intRef
+        pieces
+        color
+        text
       }
     }`
 
@@ -30,8 +46,8 @@ class App extends Component {
     };
     const res = await fetch(url, opts);
     const data = await res.json();
-    console.log(data.data.labels)
-    this.setState({labels: data.data.labels })
+    console.log(data.data)
+    this.setState({labels: data.data.labels, plastics: data.data.plastics })
   }
 
   newLabel = async (item) =>{
@@ -69,9 +85,8 @@ class App extends Component {
     this.setState({labelMessage: 'error'})
     } else{
       console.log(data)
-      let labels = [...this.state.labels];
-      labels.push(data.data.newLabel);
-      this.setState({labels: labels, labelMessage: 'sucess'});
+      const labels = [...this.state.labels, data.data.newLabel];
+      this.setState({labels, labelMessage: 'sucess'});
     }
   }
 
@@ -106,9 +121,8 @@ class App extends Component {
     this.setState({plasticMessage: 'error'})
     } else{
       console.log(data)
-      let plastics = [...this.state.plastics];
-      plastics.push(data.data.newPlastic);
-      this.setState({plastics: plastics, plasticMessage: 'sucess'});
+      const plastics = [...this.state.plastics, data.data.newPlastic];
+      this.setState({plastics, plasticMessage: 'sucess'});
     }
   }
 
@@ -118,23 +132,24 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className='app'>
-          <div className="content">
+          <nav className='options'>
           <Link to="/labels/new"><button>New Label</button></Link>
+          <Link to="/labels"><button>Labels</button></Link>
+          </nav>
+          <div className="content">
             <Switch>
-
+              <Route path="/labels" exact component={ props => ( <Labels {...props} 
+                labels={this.state.labels} plastics={this.state.plastics}/> )} 
+              />
               <Route path="/labels/new" exact component={ props => ( <NewLabel {...props} 
               labels={this.state.labels} newLabel={this.newLabel} newPlastic={this.newPlastic}/> )} 
               />
             </Switch>
           </div>
-          <div className='options'>
-           
-          </div>
           <div className='footer'>
            
           </div>
         </div>
-      
       </BrowserRouter>
   );
   }
