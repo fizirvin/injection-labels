@@ -30,4 +30,80 @@
   border-radius: 4px;
 }
 
+.labels_table{
+  margin-left: 15px;
+  border-spacing: 1px;
+  border: solid 2px;
+  margin-top: 15px;
+}
+
+.table_body_row{
+  border: solid 1px;
+  padding-left: 5px;
+}
+
+.table_header{
+  background-color: rgba(0, 0, 255, 0.534);
+}
+
+.table_header_row{
+  padding-left: 15px;
+  padding-right: 15px;
+  border: solid 1px;
+}
+
+.input_pieces{
+  width: 5em;
+}
+
+.table_title{
+  margin-left: 15px;
+}
+
+.close_button_view{
+  border: solid 1px;
+  border-radius: 8px;
+  height: 8px;
+  width: 8px;
+  cursor: pointer;
+  position: relative;
+  background-color: tomato;
+  top: -20px;
+  left: 300px;
+  margin: 0px;
+}
+
+.Modal_view{
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 0; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100vw; /* Full width */
+  height: 100vh; /* Full height */
+  overflow: none; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.3); /* Black w/ opacity */
+}
+
+.modal-content-view {
+  background-color: #fefefe;
+  margin: auto;
+  margin-top: 0px;
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 0;
+  border: 1px solid #888;
+  max-width: 1050px;
+  min-width: 1050px;
+  max-height: 815px;
+  min-height: 815px;
+  border-radius: 0px;
+}
+
+.svg_model{
+  margin: 0;
+  padding: 0;
+  border: solid;
+}
 

@@ -3,6 +3,7 @@ import {BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
 import NewLabel from './pages/NewLabel'
 import Labels from './pages/Labels'
+import Label from './pages/Label'
 
 import './app.css';
 
@@ -132,17 +133,16 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className='app'>
-          <nav className='options'>
-          <Link to="/labels/new"><button>New Label</button></Link>
-          <Link to="/labels"><button>Labels</button></Link>
-          </nav>
           <div className="content">
             <Switch>
-              <Route path="/labels" exact component={ props => ( <Labels {...props} 
+              <Route path="/" exact component={ props => ( <Labels {...props} 
                 labels={this.state.labels} plastics={this.state.plastics}/> )} 
               />
-              <Route path="/labels/new" exact component={ props => ( <NewLabel {...props} 
+              <Route path="/new" exact component={ props => ( <NewLabel {...props} 
               labels={this.state.labels} newLabel={this.newLabel} newPlastic={this.newPlastic}/> )} 
+              />
+              <Route path="/label/:id" exact component={ props => ( <Label {...props} 
+              labels={this.state.labels} plastics={this.state.plastics}/> )} 
               />
             </Switch>
           </div>

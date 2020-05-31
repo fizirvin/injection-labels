@@ -57,7 +57,7 @@ class NewLabel extends Component {
                     <td> <input type='text' id='clientRef' name='clientRef' value={this.state.clientRef} onChange={this.onInput} maxLength='15' required></input></td>
                 </tr>
                 <tr>
-                    <td><label htmlFor='pieces'>Pieces: </label></td>
+                    <td><label htmlFor='pieces'>Default Pieces: </label></td>
                     <td><input type='number' id='pieces' name='pieces' value={this.state.pieces} onChange={this.onInput} min="20" max="500" required></input></td>
                 </tr>
                 <tr>
@@ -94,7 +94,7 @@ class NewLabel extends Component {
                     <td><input type='text' id='intRef' name='intRef' value={this.state.intRef} onChange={this.onInput} maxLength='15' required></input></td>
                 </tr>
                 <tr>
-                    <td><label htmlFor='pieces'>Pieces: </label></td>
+                    <td><label htmlFor='pieces'>Default Pieces: </label></td>
                     <td><input type='number' id='pieces' name='pieces' value={this.state.pieces} onChange={this.onInput} min="20" max="500" required></input></td>
                 </tr>
             </tbody>
