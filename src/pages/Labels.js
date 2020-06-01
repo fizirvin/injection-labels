@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
+import {getDayOfYear}  from 'date-fns'
 
 class Labels extends Component {
   state={
@@ -7,16 +8,68 @@ class Labels extends Component {
     labels: this.props.labels
   }
 
+  // days_of_a_year(year) {
+  //   return isLeapYear(year) ? 366 : 365;
+  // }
+
+  // isLeapYear(year) {
+  //   return year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0);
+  // }
+
+  formatDate(format){
+    let formatDate
+    const date = new Date(format);
+    const y = date.getFullYear()
+    const d = date.getDate();
+    const m = date.getMonth()+1
+
+    function M(){
+      if(m < 10){
+        return '0'+ m
+      } else { return m } 
+    }
+    
+    function D(){
+      if(d < 10){
+        return '0'+ d
+      } else { return d }
+    }
+  
+    const formatD = D();
+    const formatM = M();
+    formatDate = y + '-'+ formatM + '-'+ formatD
+    return formatDate
+  }
+
+  setLot = (id, type) =>{
+    const label = this.state[type].find( item => item._id === id)
+    if(!label){return null}
+    else{ 
+      const { machine } = label
+      const date = new Date();
+      const y = date.getFullYear()
+      const h = date.getHours();
+      const day = getDayOfYear(date);
+      const shift = this.shift(h);
+      const lot = String(y)+String(day)+String(machine)+shift
+      return lot
+    }
+  }
+
+  shift = (h) =>{
+    return h >= 6 && h <= 17? 'M' : 'T'
+  }
+
   renderLabels = () =>{
-    return this.state.labels.map( ({_id, header, color, text, intRef, clientRef, pieces}, index) =>
+    return this.state.labels.map( ({_id, header, color, text, intRef, clientRef, pieces, machine}, index) =>
       <tr key={_id}>
         <td className='table_body_row'>{index+1}</td>
         <td className='table_body_row' style={{backgroundColor: `${color}`, color: `${text}`}}>{header}</td>
         <td className='table_body_row'>{intRef}</td>
         <td className='table_body_row'>{clientRef}</td>
         <td className='table_body_row'>{<input type='number' size="5" min='10' className='input_pieces' defaultValue={pieces}></input>}</td>
-        <td className='table_body_row'></td>
-        <td className='table_body_row'></td>
+        <td className='table_body_row'>{machine}</td>
+        <td className='table_body_row'>{this.setLot(_id, 'labels')}</td>
         <td className='table_body_row'><Link to={`/label/${_id}`}><button>View</button></Link></td>
       </tr>
     )

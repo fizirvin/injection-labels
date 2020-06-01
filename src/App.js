@@ -28,6 +28,7 @@ class App extends Component {
         pieces
         color
         text
+        machine
       }
       plastics {
         _id
@@ -36,6 +37,7 @@ class App extends Component {
         pieces
         color
         text
+        machine
       }
     }`
 
@@ -60,6 +62,7 @@ class App extends Component {
       certification: "${item.certification}"
       text: "${item.text}"
       pieces: "${item.pieces}"
+      machine: "${item.machine}"
     }) {
       _id
       header
@@ -69,6 +72,7 @@ class App extends Component {
       certification
       text
       pieces
+      machine
     }}`;
 
     const url = this.state.server;
@@ -98,6 +102,7 @@ class App extends Component {
       color: "${item.color}"
       text: "${item.text}"
       pieces: "${item.pieces}"
+      machine: "${item.machine}"
     }) {
       _id
       header
@@ -105,6 +110,7 @@ class App extends Component {
       color
       text
       pieces
+      machine
     }}`;
 
     const url = this.state.server;

@@ -11,7 +11,8 @@ class NewLabel extends Component {
     color: '#8080ff',
     certification: 'true',
     text: 'black',
-    pieces: '300'
+    pieces: '300',
+    machine: ''
   }
 
     async componentDidMount(){
@@ -61,6 +62,10 @@ class NewLabel extends Component {
                     <td><input type='number' id='pieces' name='pieces' value={this.state.pieces} onChange={this.onInput} min="20" max="500" required></input></td>
                 </tr>
                 <tr>
+                    <td><label htmlFor='machine'>Default Machine: </label></td>
+                    <td><input type='text' id='machine' name='machine' value={this.state.machine} onChange={this.onInput} size='5' maxLength='2' required></input></td>
+                </tr>
+                <tr>
                     <td><label>Certification: </label></td>
                     <td><input type="radio" id="true" name="certification" value={true} onChange={this.onInput} checked={this.state.certification === 'true'? true : false} required></input>
                     <label htmlFor="true">Yes</label>
@@ -97,6 +102,10 @@ class NewLabel extends Component {
                     <td><label htmlFor='pieces'>Default Pieces: </label></td>
                     <td><input type='number' id='pieces' name='pieces' value={this.state.pieces} onChange={this.onInput} min="20" max="500" required></input></td>
                 </tr>
+                <tr>
+                    <td><label htmlFor='machine'>Default Machine: </label></td>
+                    <td><input type='text' id='machine' name='machine' value={this.state.machine} onChange={this.onInput} size='5' maxLength='2' required></input></td>
+                </tr>
             </tbody>
         )
     }
@@ -128,7 +137,7 @@ class NewLabel extends Component {
                     {this.renderForm()}
                 </table>
             <Link to="/"><button type="button">Close</button></Link>
-            <button type="button" onClick={this.showState}>state</button>
+            {/* <button type="button" onClick={this.showState}>state</button> */}
             <input type="submit" value="Submit"></input>
             </form>
           </div>
