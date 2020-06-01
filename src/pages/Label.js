@@ -20,7 +20,13 @@ class Label extends Component {
         <div className="Modal_view">
           <div className="modal-content-view">
               {/* <Link to="/"><div className='close_button_view'></div></Link> */}
-              <LabelA>  </LabelA>
+              <table className='label_view_table'>
+                <tbody>
+                  <tr><td className='td_label_view'><LabelA></LabelA></td><td className='td_label_view'><LabelA></LabelA></td><td className='td_label_view'><LabelA></LabelA></td></tr>
+                  <tr><td className='td_label_view'><LabelA></LabelA></td><td className='td_label_view'><LabelA></LabelA></td><td className='td_label_view'><LabelA></LabelA></td></tr>
+                  <tr><td className='td_label_view'><LabelA></LabelA></td><td className='td_label_view'><LabelA></LabelA></td><td className='td_label_view'><LabelA></LabelA></td></tr>
+                </tbody>
+              </table>
           </div>
         </div>,document.querySelector('#modal')
       );

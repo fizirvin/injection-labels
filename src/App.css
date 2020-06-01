@@ -87,11 +87,11 @@
 }
 
 .modal-content-view {
+  display: flex;
   background-color: #fefefe;
   margin: auto;
   margin-top: 0px;
-  padding-top: 15px;
-  padding-left: 15px;
+  
   padding-right: 0;
   border: 1px solid #888;
   max-width: 1050px;
@@ -99,11 +99,30 @@
   max-height: 815px;
   min-height: 815px;
   border-radius: 0px;
+  
+  
 }
 
 .svg_model{
   margin: 0;
   padding: 0;
-  border: solid;
+  
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-top: 0px;
+}
+
+.label_view_table{
+  background-color: tomato;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: auto;
+}
+
+.td_label_view{
+  padding: 0;
+  margin: 0;
+  border: solid .1px;
 }
 

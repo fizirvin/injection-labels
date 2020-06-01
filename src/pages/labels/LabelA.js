@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import * as d3 from 'd3';
 
 
-const width = 1020;
-const height = 785;
+const width = 315;
+const height = 240;
 const margin = {top: 10, right: 5, bottom: 150, left: 35};
 const red = '#eb6a5b';
 const blue = '#52b6ca';
@@ -83,8 +83,8 @@ class LabelA extends Component {
     
     return (
       <svg width={width} height={height} className='svg_model'>
-        <rect x="0" y="0" width={width} height={height} fill="green" />
-        <rect x="0" y="300" width={width} height="1" fill="green" />
+        {/* <rect x="0" y="0" width={width} height={height} fill="green" />
+        <rect x="0" y="300" width={width} height="1" fill="green" /> */}
       </svg>
     );
   }

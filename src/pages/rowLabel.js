@@ -30,7 +30,7 @@ class RowLabel extends Component {
         <td className='table_body_row'>{intRef}</td>
         <td className='table_body_row'>{clientRef}</td>
         <td className='table_body_row'>{<input type='number' min='10' max='500' name={'pieces'} className='input_pieces' onChange={this.onInputChange} value={this.state.pieces}></input>}</td>
-        <td className='table_body_row'>{<input type='text' size="5" maxLength='2' name={'machine'} onChange={this.onInputChange} value={this.state.machine}></input>}</td>
+        <td className='table_body_row'>{<input type='text' size="5" maxLength='3' name={'machine'} onChange={this.onInputChange} value={this.state.machine}></input>}</td>
         <td className='table_body_row'><input type='text' size="10" maxLength='9' name={'lot'} onChange={this.onInputChange} value={this.state.lot}></input></td>
         <td className='table_body_row'><Link to={`/label/${_id}`}><button>View</button></Link></td>
       </tr>
