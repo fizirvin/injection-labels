@@ -49,7 +49,7 @@ class App extends Component {
     };
     const res = await fetch(url, opts);
     const data = await res.json();
-    console.log(data.data)
+    
     this.setState({labels: data.data.labels, plastics: data.data.plastics })
   }
 
@@ -86,10 +86,10 @@ class App extends Component {
     const data = await res.json();
     
     if(data.errors){
-    console.log(data)
+    
     this.setState({labelMessage: 'error'})
     } else{
-      console.log(data)
+      
       const labels = [...this.state.labels, data.data.newLabel];
       this.setState({labels, labelMessage: 'sucess'});
     }
@@ -124,10 +124,10 @@ class App extends Component {
     const data = await res.json();
     
     if(data.errors){
-      console.log(data)
+      
     this.setState({plasticMessage: 'error'})
     } else{
-      console.log(data)
+      
       const plastics = [...this.state.plastics, data.data.newPlastic];
       this.setState({plastics, plasticMessage: 'sucess'});
     }

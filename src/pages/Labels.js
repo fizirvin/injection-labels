@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import {getDayOfYear}  from 'date-fns'
+import {format} from 'date-fns'
+
+import RowLabel from './rowLabel.js'
 
 class Labels extends Component {
   state={
@@ -47,11 +50,12 @@ class Labels extends Component {
     else{ 
       const { machine } = label
       const date = new Date();
-      const y = date.getFullYear()
+      const y = format(new Date(), 'yy')
       const h = date.getHours();
       const day = getDayOfYear(date);
       const shift = this.shift(h);
       const lot = String(y)+String(day)+String(machine)+shift
+      
       return lot
     }
   }
@@ -62,21 +66,22 @@ class Labels extends Component {
 
   renderLabels = () =>{
     return this.state.labels.map( ({_id, header, color, text, intRef, clientRef, pieces, machine}, index) =>
-      <tr key={_id}>
-        <td className='table_body_row'>{index+1}</td>
-        <td className='table_body_row' style={{backgroundColor: `${color}`, color: `${text}`}}>{header}</td>
-        <td className='table_body_row'>{intRef}</td>
-        <td className='table_body_row'>{clientRef}</td>
-        <td className='table_body_row'>{<input type='number' size="5" min='10' className='input_pieces' defaultValue={pieces}></input>}</td>
-        <td className='table_body_row'>{machine}</td>
-        <td className='table_body_row'>{this.setLot(_id, 'labels')}</td>
-        <td className='table_body_row'><Link to={`/label/${_id}`}><button>View</button></Link></td>
-      </tr>
+      <RowLabel
+      key={_id}
+      _id={_id} 
+      header={header} 
+      color={color} 
+      text={text} 
+      intRef={intRef} 
+      clientRef={clientRef}
+      pieces={pieces}
+      machine={machine} 
+      index={index+1} 
+      lot={this.setLot(_id, 'labels')}></RowLabel>
     )
   }
 
     render(){
-      console.log(this.state.labels)
       return <div>
         <h3 className='table_title'>Labels Table</h3>
         <table className='labels_table'>
