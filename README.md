@@ -1,3 +1,13 @@
+# Injection Production Web App
+
+<img src="https://raw.githubusercontent.com/fizirvin/injection-labels/master/labels-list.png" >
+
+Single Page App to do a list of labels, which will be printed every day for production process on the production area. Every Label needs some data to be configurated before printing, like the "Lot Number", it needs to be updated every day. The Web App configurates the Lot Number automatically.
+
+Every label created gets stored in a database, throw a backend GraphQL API functions, so the list is the database of each label configuration.
+
+React.js (frontend web app), Node.js, GraphQL, MongoDB. D3.js (label SVG)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
