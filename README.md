@@ -1,6 +1,7 @@
 # Injection Production Web App
 
 <img src="https://raw.githubusercontent.com/fizirvin/injection-labels/master/labels-list.png" >
+<img src="https://raw.githubusercontent.com/fizirvin/injection-labels/master/labels-form.png" >
 
 Single Page App to do a list of labels, which will be printed every day for production process on the production area. Every Label needs some data to be configurated before printing, like the "Lot Number", it needs to be updated every day. The Web App configurates the Lot Number automatically.
 
