@@ -4,12 +4,14 @@ import {BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import NewLabel from './pages/NewLabel'
 import Labels from './pages/Labels'
 import Label from './pages/Label'
+import EditLabel from './pages/EditLabel'
+import modifyLabel from './pages/modifyLabel.js'
 
 import './app.css';
 
 class App extends Component {
   state={
-    server: 'https://injection-labels-server.irvinfiz.now.sh/graph',
+    server: 'https://injection-labels-server.adrian-injection.vercel.app/graph',
     labels:[],
     plastics: [],
     labelMessage: '',
@@ -133,6 +135,37 @@ class App extends Component {
     }
   }
 
+  updatePlastic = async ({_id, header, intRef, color, text, pieces, machine}) =>{
+    const input = { header, intRef, color, text, pieces, machine }
+    console.log(input)
+    modifyLabel.variables = { _id, input }
+
+    const url = this.state.server;
+    const opts = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(modifyLabel)
+    };
+
+    const res = await fetch(url, opts);
+    const data = await res.json();
+    
+    if(data.errors){
+      console.log(data.errors)
+    this.setState({plasticMessage: 'error'})
+    } else{
+
+      const  plastic = data.data.updatePlastic;
+      let plastics = [...this.state.plastics];
+      plastics[plastics.findIndex(el => el._id === plastic._id)] = plastic;
+      return this.setState({ plastics, plasticMessage: 'sucess'});
+    }
+  }
+
+  onClose = ( ) =>{
+    return this.setState({plasticMessage: ''})
+  }
+
 
 
   render(){
@@ -145,10 +178,13 @@ class App extends Component {
                 labels={this.state.labels} plastics={this.state.plastics}/> )} 
               />
               <Route path="/new" exact component={ props => ( <NewLabel {...props} 
-              labels={this.state.labels} newLabel={this.newLabel} newPlastic={this.newPlastic}/> )} 
+              labels={this.state.labels} newLabel={this.newLabel} newPlastic={this.newPlastic} onClose={this.onClose} message={this.state.plasticMessage}/> )} 
               />
               <Route path="/label/:id" exact component={ props => ( <Label {...props} 
               labels={this.state.labels} plastics={this.state.plastics}/> )} 
+              />
+              <Route path="/label/edit/:id" exact component={ props => ( <EditLabel {...props} 
+              plastics={this.state.plastics} updatePlastic={this.updatePlastic} onClose={this.onClose} message={this.state.plasticMessage}/> )} 
               />
             </Switch>
           </div>

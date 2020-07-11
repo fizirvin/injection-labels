@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
-class NewLabel extends Component {
+class EditLabel extends Component {
   state={
-    type: '',
+    type: 'plastic',
     header: '',
     intRef: '',
     color: '#8080ff',
@@ -15,13 +15,20 @@ class NewLabel extends Component {
   }
 
     async componentDidMount(){
-    
+        const { id } = this.props.match.params
+        const getLabel = await this.props.plastics.find( item => item._id === id)
+        if(!getLabel){ return }
+        else{
+            const { color, header, intRef, machine, pieces, text, _id } = getLabel
+            return this.setState({color, header, intRef, machine, pieces, text, _id})
+        }
+        
     }
 
     onSubmit = e =>{
         e.preventDefault();
         if(this.state.type === 'client') { return this.props.newLabel(this.state);}
-        else if(this.state.type === 'plastic') { return this.props.newPlastic(this.state); }
+        else if(this.state.type === 'plastic') { return this.props.updatePlastic(this.state); }
       }
 
     onInput = e =>{
@@ -118,7 +125,7 @@ class NewLabel extends Component {
     renderOption(){
         if(this.props.message === 'sucess'){
             return <div className="modal-content">
-                <h4>New Label Set Correctly</h4>
+                <h4>Label was updated correctly</h4>
                  <Link to="/"><button type="button" onClick={this.props.onClose}>Close</button></Link>
             </div>
         }
@@ -130,26 +137,26 @@ class NewLabel extends Component {
         }
         else{
             return <div className="modal-content">
-              <h2>Set New Label</h2>
-          <form onSubmit={this.onSubmit}>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td><label htmlFor='type'>Label model: </label></td>
-                            <td><select id='type' name='type' onChange={this.onInput} defaultValue=''>
-                                    <option disabled value="">select</option>
-                                    <option value="plastic">Label A</option>
-                                </select>
-                            </td>
-                        </tr>
-                    </tbody>
-                    {this.renderForm()}
-                </table>
-            <Link to="/"><button type="button">Close</button></Link>
-            {/* <button type="button" onClick={this.showState}>state</button> */}
-            <input type="submit" value="Submit"></input>
-            </form>
-          </div>
+            <h2>Edit Label</h2>
+        <form onSubmit={this.onSubmit}>
+              <table>
+                  <tbody>
+                      <tr>
+                          <td><label htmlFor='type'>Label model: </label></td>
+                          <td><select id='type' name='type' onChange={this.onInput} defaultValue={this.state.type}>
+                                  <option disabled value="">select</option>
+                                  <option value="plastic">Label A</option>
+                              </select>
+                          </td>
+                      </tr>
+                  </tbody>
+                  {this.renderForm()}
+              </table>
+          <Link to="/"><button type="button">Close</button></Link>
+          {/* <button type="button" onClick={this.showState}>state</button> */}
+          <input type="submit" value="Submit"></input>
+          </form>
+        </div>
         }
     }
 
@@ -162,4 +169,4 @@ class NewLabel extends Component {
   }
 }
 
-export default NewLabel;
+export default EditLabel;

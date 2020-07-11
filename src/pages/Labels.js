@@ -65,7 +65,7 @@ class Labels extends Component {
   }
 
   renderLabels = () =>{
-    return this.state.labels.map( ({_id, header, color, text, intRef, clientRef, pieces, machine}, index) =>
+    return this.state.plastics.map( ({_id, header, color, text, intRef, pieces, machine}, index) =>
       <RowLabel
       key={_id}
       _id={_id} 
@@ -73,11 +73,10 @@ class Labels extends Component {
       color={color} 
       text={text} 
       intRef={intRef} 
-      clientRef={clientRef}
       pieces={pieces}
       machine={machine} 
       index={index+1} 
-      lot={this.setLot(_id, 'labels')}></RowLabel>
+      lot={this.setLot(_id, 'plastics')}></RowLabel>
     )
   }
 
@@ -88,9 +87,8 @@ class Labels extends Component {
           <thead className='table_header'>
             <tr>
               <th className='table_header_row'>#</th>
-              <th className='table_header_row'>header</th>
-              <th className='table_header_row'>Ref</th>
-              <th className='table_header_row'>Client Ref</th>
+              <th className='table_header_row'>Header</th>
+              <th className='table_header_row'>Reference</th>
               <th className='table_header_row'>Pieces</th>
               <th className='table_header_row'>Machine</th>
               <th className='table_header_row'>Lot Number</th>
