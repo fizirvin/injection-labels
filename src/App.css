@@ -114,7 +114,7 @@
 }
 
 .label_view_table{
-  background-color: tomato;
+  
   border-collapse: collapse;
   border-spacing: 0;
   margin: auto;
@@ -124,5 +124,54 @@
   padding: 0;
   margin: 0;
   border: solid .1px;
+}
+
+
+.model_label_A{
+  height: 180px;
+  width: 236px;
+  margin: 0;
+  padding: 0;
+}
+
+.label_A_header{
+ 
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8em;
+  font-weight: bold;
+  border-bottom: solid 1px black;
+  width: 100%;
+  
+}
+
+.row_labelA{
+  font-size: .6em;
+  
+  width: 106px;
+  text-align: center;
+  font-weight: bold;
+  height: 18px;
+}
+
+.row_labelA_side{
+  border-bottom: solid .1px black;
+  width: 130px;
+  height: 16px;
+}
+
+.labelA_table{
+  
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 0;
+  
+}
+
+.row_labelA_ref{
+  text-align: center;
+  font-size: .9em;
 }
 

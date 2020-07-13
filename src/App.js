@@ -181,7 +181,7 @@ class App extends Component {
               labels={this.state.labels} newLabel={this.newLabel} newPlastic={this.newPlastic} onClose={this.onClose} message={this.state.plasticMessage}/> )} 
               />
               <Route path="/label/:id" exact component={ props => ( <Label {...props} 
-              labels={this.state.labels} plastics={this.state.plastics}/> )} 
+               plastics={this.state.plastics}/> )} 
               />
               <Route path="/label/edit/:id" exact component={ props => ( <EditLabel {...props} 
               plastics={this.state.plastics} updatePlastic={this.updatePlastic} onClose={this.onClose} message={this.state.plasticMessage}/> )} 

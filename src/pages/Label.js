@@ -6,14 +6,23 @@ import LabelA from './labels/LabelA'
 
 class Label extends Component {
   state={
-    type: '',
+    
   }
 
     async componentDidMount(){
+      const label = this.props.match.params.id
+      const getLabel = await this.props.plastics.find( item => item._id === label)
+      
+      if(!getLabel){
+        return
+      }
+      else{
+        const { header, color, intRef, machine, pieces, text } = getLabel
+        console.log(getLabel)
+        return this.setState({header, color, intRef, machine, pieces, text})
+      }
     
     }
-
-    
 
   render(){
     return ReactDOM.createPortal(
@@ -22,9 +31,10 @@ class Label extends Component {
               {/* <Link to="/"><div className='close_button_view'></div></Link> */}
               <table className='label_view_table'>
                 <tbody>
-                  <tr><td className='td_label_view'><LabelA></LabelA></td><td className='td_label_view'><LabelA></LabelA></td><td className='td_label_view'><LabelA></LabelA></td></tr>
-                  <tr><td className='td_label_view'><LabelA></LabelA></td><td className='td_label_view'><LabelA></LabelA></td><td className='td_label_view'><LabelA></LabelA></td></tr>
-                  <tr><td className='td_label_view'><LabelA></LabelA></td><td className='td_label_view'><LabelA></LabelA></td><td className='td_label_view'><LabelA></LabelA></td></tr>
+                  <tr><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} color={this.state.color} text={this.state.text}></LabelA></td><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} color={this.state.color} text={this.state.text}></LabelA></td><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} color={this.state.color} text={this.state.text}></LabelA></td><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} color={this.state.color} text={this.state.text}></LabelA></td></tr>
+                  <tr><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} color={this.state.color} text={this.state.text}></LabelA></td><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} color={this.state.color} text={this.state.text}></LabelA></td><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} color={this.state.color} text={this.state.text}></LabelA></td><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} color={this.state.color} text={this.state.text}></LabelA></td></tr>
+                  <tr><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} color={this.state.color} text={this.state.text}></LabelA></td><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} color={this.state.color} text={this.state.text}></LabelA></td><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} color={this.state.color} text={this.state.text}></LabelA></td><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} color={this.state.color} text={this.state.text}></LabelA></td></tr>
+                  <tr><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} color={this.state.color} text={this.state.text}></LabelA></td><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} color={this.state.color} text={this.state.text}></LabelA></td><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} color={this.state.color} text={this.state.text}></LabelA></td><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} color={this.state.color} text={this.state.text}></LabelA></td></tr>
                 </tbody>
               </table>
           </div>
