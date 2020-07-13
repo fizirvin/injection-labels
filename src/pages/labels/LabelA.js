@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 
 
 
-const width = 236; //315
-const height = 180; //240
-const header = 40
-const body = 140
-const margin = {top: 10, right: 5, bottom: 150, left: 35};
-const red = '#eb6a5b';
-const blue = '#52b6ca';
+// const width = 236; //315
+// const height = 180; //240
+// const header = 40
+// const body = 140
+
+
 
 
 class LabelA extends Component {
@@ -22,7 +21,7 @@ class LabelA extends Component {
 
 
   componentDidMount (){
-    console.log(this.props)
+    
   
 
   }
@@ -42,14 +41,15 @@ class LabelA extends Component {
         </div>
         <div>
           <table className='labelA_table'>
+            <tbody>
             <tr>
               <td className='row_labelA'>Nº DE REFERENCIA:</td><td className='row_labelA_ref'>{this.props.intRef}</td>
             </tr>
             <tr>
-              <td className='row_labelA'>Nº DE LOTE:</td><td></td>
+              <td className='row_labelA'>Nº DE LOTE:</td><td className='row_labelA_ref'>{this.props.lot}</td>
             </tr>
             <tr>
-              <td className='row_labelA'>CANTIDAD / N. CAJA</td><td className='row_labelA_side'></td>
+              <td className='row_labelA'>CANTIDAD / N. CAJA</td><td className='row_labelA_pieces'>{this.props.pieces} pzs</td>
             </tr>
             <tr>
               <td className='row_labelA'>Inyección plástico</td><td className='row_labelA_side'></td>
@@ -63,6 +63,7 @@ class LabelA extends Component {
             <tr>
               <td className='row_labelA'>Hora de salida</td><td className='row_labelA_side'></td>
             </tr>
+            </tbody>
           </table>
         </div>
       </div>

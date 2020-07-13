@@ -153,7 +153,6 @@
   width: 106px;
   text-align: center;
   font-weight: bold;
-  height: 18px;
 }
 
 .row_labelA_side{
@@ -172,6 +171,12 @@
 
 .row_labelA_ref{
   text-align: center;
-  font-size: .9em;
+  font-size: .7em;
+}
+
+.row_labelA_pieces{
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: bold;
 }
 

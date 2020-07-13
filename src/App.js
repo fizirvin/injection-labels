@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import {BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import NewLabel from './pages/NewLabel'
 import Labels from './pages/Labels'
@@ -180,7 +180,7 @@ class App extends Component {
               <Route path="/new" exact component={ props => ( <NewLabel {...props} 
               labels={this.state.labels} newLabel={this.newLabel} newPlastic={this.newPlastic} onClose={this.onClose} message={this.state.plasticMessage}/> )} 
               />
-              <Route path="/label/:id" exact component={ props => ( <Label {...props} 
+              <Route path="/label/:id/:lot/:pieces" exact component={ props => ( <Label {...props} 
                plastics={this.state.plastics}/> )} 
               />
               <Route path="/label/edit/:id" exact component={ props => ( <EditLabel {...props} 
