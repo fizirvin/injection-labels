@@ -106,11 +106,11 @@ class EditLabel extends Component {
                 </tr>
                 <tr>
                     <td><label htmlFor='pieces'>Default Pieces: </label></td>
-                    <td><input type='number' id='pieces' name='pieces' value={this.state.pieces} onChange={this.onInput} min="20" max="500" required></input></td>
+                    <td><input type='number' id='pieces' name='pieces' value={this.state.pieces} onChange={this.onInput} min="20" max="1000" required></input></td>
                 </tr>
                 <tr>
                     <td><label htmlFor='machine'>Default Machine: </label></td>
-                    <td><input type='text' id='machine' name='machine' value={this.state.machine} onChange={this.onInput} size='5' maxLength='2' required></input></td>
+                    <td><input type='text' id='machine' name='machine' value={this.state.machine} onChange={this.onInput} size='5' maxLength='3' required></input></td>
                 </tr>
             </tbody>
         )
