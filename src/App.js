@@ -11,7 +11,7 @@ import './app.css';
 
 class App extends Component {
   state={
-    server: 'https://injection-labels-server.adrian-injection.vercel.app/graph',
+    server: 'https://injection-labels-server.irvinfiz.now.sh/graph',
     labels:[],
     plastics: [],
     labelMessage: '',

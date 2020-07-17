@@ -2,8 +2,9 @@
 
 <img src="https://raw.githubusercontent.com/fizirvin/injection-labels/master/labels-list.png" >
 <img src="https://raw.githubusercontent.com/fizirvin/injection-labels/master/labels-form.png" >
+<img src="https://raw.githubusercontent.com/fizirvin/injection-labels/master/label.png" >
 
-Single Page App to do a list of labels, which will be printed every day for production process on the production area. Every Label needs some data to be configurated before printing, like the "Lot Number", it needs to be updated every day. The Web App configurates the Lot Number automatically.
+Single Page App to do a list of labels, which will be printed every day for production process on the production area. Every Label needs some data to be configurated before printing, like the "Lot Number", it needs to be updated every day. The Web App configurates the Lot Number automatically, And gives the QR code of it.
 
 Every label created gets stored in a database, throw a backend GraphQL API functions, so the list is the database of each label configuration.
 
