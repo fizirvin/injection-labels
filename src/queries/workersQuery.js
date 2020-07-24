@@ -1,6 +1,17 @@
 const workersQuery = { query: `query
-  ProfilesLabels($team: String){
-    profilesLabels(team:$team){
+  ProfilesLabels($amealco: String, $varias: String ){
+    amealco: profilesLabels(team:$amealco){
+      _id
+      number
+      firstname
+      lastname
+      gender
+      team
+      position
+      active
+      picture_URL
+    }
+    varias: profilesLabels(team:$varias){
       _id
       number
       firstname

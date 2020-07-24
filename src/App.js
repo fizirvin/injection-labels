@@ -18,11 +18,15 @@ class App extends Component {
     server: 'https://injection-labels-server.irvinfiz.now.sh/graph',
     labels:[],
     plastics: [],
-    profiles: [],
+    amealco: [],
+    varias: [],
     labelMessage: '',
     plasticMessage: '',
-    setInspector: [],
-    setOperator: []
+    setAmealcoInspector: [],
+    setAmealcoOperator: [],
+    setVariasInspector: [],
+    setVariasOperator: [],
+    team: 'varias'
   }
 
   async componentDidMount(){
@@ -32,12 +36,12 @@ class App extends Component {
     const data = await res.json();
 
     
-    workersQuery.variables = { team: 'amealco' }
+    workersQuery.variables = { amealco: 'amealco', varias: 'varias' }
     hr_opts.body = JSON.stringify(workersQuery)
     const hr_res = await fetch(hr_server, hr_opts);
     const hr_data = await hr_res.json();
     
-    return this.setState({labels: data.data.labels, plastics: data.data.plastics, profiles: hr_data.data.profilesLabels })
+    return this.setState({labels: data.data.labels, plastics: data.data.plastics, amealco: hr_data.data.amealco, varias: hr_data.data.varias })
   }
 
   newLabel = async (item) =>{
@@ -152,17 +156,34 @@ class App extends Component {
   }
 
   
-  newInspector = ({_id, inspector}) =>{
-    const ins = this.state.setInspector.filter( item => item._id !== _id )
-    const setInspector = [...ins, {_id, inspector}]
-    return this.setState({setInspector})
+  newAmealcoInspector = ({_id, inspector}) =>{
+    const ins = this.state.setAmealcoInspector.filter( item => item._id !== _id )
+    const setAmealcoInspector = [...ins, {_id, inspector}]
+    return this.setState({setAmealcoInspector})
   }
 
-  newOperator = ({_id, operator }) =>{
-    const op = this.state.setOperator.filter( item => item._id !== _id )
-    const setOperator = [...op, {_id, operator}]
+  newAmealcoOperator = ({_id, operator }) =>{
+    const op = this.state.setAmealcoOperator.filter( item => item._id !== _id )
+    const setAmealcoOperator = [...op, {_id, operator}]
     
-    return this.setState({setOperator})
+    return this.setState({setAmealcoOperator})
+  }
+
+  newVariasInspector = ({_id, inspector}) =>{
+    const ins = this.state.setVariasInspector.filter( item => item._id !== _id )
+    const setVariasInspector = [...ins, {_id, inspector}]
+    return this.setState({setVariasInspector})
+  }
+
+  newVariasOperator = ({_id, operator }) =>{
+    const op = this.state.setVariasOperator.filter( item => item._id !== _id )
+    const setVariasOperator = [...op, {_id, operator}]
+    
+    return this.setState({setVariasOperator})
+  }
+
+  changeTeam=(team)=>{
+    return this.setState({team})
   }
 
 
@@ -173,11 +194,19 @@ class App extends Component {
           <div className="content">
             <Switch>
               <Route path="/" exact component={ props => ( <Labels {...props} 
-                profiles={this.state.profiles} plastics={this.state.plastics} 
-                newInspector={this.newInspector}
-                newOperator={this.newOperator}
-                setInspector={this.state.setInspector}
-                setOperator={this.state.setOperator}
+                amealco={this.state.amealco}
+                varias={this.state.varias} 
+                plastics={this.state.plastics} 
+                newAmealcoInspector={this.newAmealcoInspector}
+                newAmealcoOperator={this.newAmealcoOperator}
+                setAmealcoInspector={this.state.setAmealcoInspector}
+                setAmealcoOperator={this.state.setAmealcoOperator}
+                newVariasInspector={this.newVariasInspector}
+                newVariasOperator={this.newVariasOperator}
+                setVariasInspector={this.state.setVariasInspector}
+                setVariasOperator={this.state.setVariasOperator}
+                changeTeam={this.changeTeam}
+                team={this.state.team}
                 /> )} 
               />
               <Route path="/new" exact component={ props => ( <NewLabel {...props} 

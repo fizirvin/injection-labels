@@ -57,14 +57,22 @@ class Labels extends Component {
     return h >= 6 && h <= 17? 'M' : 'T'
   }
 
- 
+ renderLabels = ( ) =>{
+  if(this.props.team === 'amealco'){
+    return this.renderAmealcoLabels()
+  }
+  else{
+    return this.renderVariasLabels()
+  }
+ }
 
-  renderLabels = () =>{
+
+  renderAmealcoLabels = () =>{
     return this.state.plastics.map( ({_id, header, color, text, intRef, pieces, machine}, index) =>{
 
-      const ins = this.props.setInspector.find( item => item._id === _id  && item.inspector )
+      const ins = this.props.setAmealcoInspector.find( item => item._id === _id  && item.inspector )
       const inspector = ins ? ins.inspector : '';
-      const op = this.props.setOperator.find( item => item._id === _id  && item.operator )
+      const op = this.props.setAmealcoOperator.find( item => item._id === _id  && item.operator )
       const operator = op ? op.operator : '';
       
       return <RowLabel
@@ -77,9 +85,9 @@ class Labels extends Component {
         pieces={pieces}
         machine={machine} 
         index={index+1}
-        profiles={this.props.profiles}
-        newInspector={this.props.newInspector}
-        newOperator={this.props.newOperator} 
+        profiles={this.props.amealco}
+        newInspector={this.props.newAmealcoInspector}
+        newOperator={this.props.newAmealcoOperator} 
         inspector={inspector}
         operator={operator}
         lot={this.setLot(_id, 'plastics')}>
@@ -87,9 +95,60 @@ class Labels extends Component {
     })
   }
 
+  renderVariasLabels = () =>{
+    return this.state.plastics.map( ({_id, header, color, text, intRef, pieces, machine}, index) =>{
+
+      const ins = this.props.setVariasInspector.find( item => item._id === _id  && item.inspector )
+      const inspector = ins ? ins.inspector : '';
+      const op = this.props.setVariasOperator.find( item => item._id === _id  && item.operator )
+      const operator = op ? op.operator : '';
+      
+      return <RowLabel
+        key={_id}
+        _id={_id} 
+        header={header} 
+        color={color} 
+        text={text} 
+        intRef={intRef} 
+        pieces={pieces}
+        machine={machine} 
+        index={index+1}
+        profiles={this.props.varias}
+        newInspector={this.props.newVariasInspector}
+        newOperator={this.props.newVariasOperator} 
+        inspector={inspector}
+        operator={operator}
+        lot={this.setLot(_id, 'plastics')}>
+      </RowLabel>
+    })
+  }
+
+  onTeam = (e) =>{
+    const team = e.target.name
+    return this.props.changeTeam(team)
+  }
+
+  
+
+  renderButton = ( ) =>{
+    if(this.props.team === 'varias'){ 
+      return <div>
+          <button name='varias' onClick={this.onTeam} className='red'>R Varias</button>
+          <button name='amealco' onClick={this.onTeam}>Amealco</button>
+        </div> 
+      }
+    else { return <div>
+      <button name='varias' onClick={this.onTeam}>R Varias</button>
+      <button name='amealco' onClick={this.onTeam} className='red'>Amealco</button>
+    </div>  }
+  }
+
     render(){
       return <div>
-        <h3 className='table_title'>Labels Table</h3>
+        <div className='controls'> 
+          <h3 className='table_title'>Labels Table</h3>
+          {this.renderButton()}
+        </div>
         <table className='labels_table'>
           <thead className='table_header'>
             <tr>
