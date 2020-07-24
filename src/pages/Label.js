@@ -13,7 +13,7 @@ class Label extends Component {
       const label = this.props.match.params.id
       
       const getLabel = await this.props.plastics.find( item => item._id === label)
-      console.log(this.props.match, 'hola')
+     
       if(!getLabel){
         return
       }
@@ -27,7 +27,7 @@ class Label extends Component {
     }
 
     printLabel = () =>{
-      console.log('hola')
+      
       // var css = '@page { size: landscape; margin: 0; }',
       // head = document.head || document.getElementsByTagName('head')[0],
       // style = document.createElement('style');

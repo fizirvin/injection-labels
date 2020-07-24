@@ -94,7 +94,7 @@ class NewLabel extends Component {
                     </td>
                 </tr>
                 <tr>
-                    <td><label htmlFor='intRef'>Reference: </label></td>
+                    <td><label htmlFor='intRef'>Part Number: </label></td>
                     <td><input type='text' id='intRef' name='intRef' value={this.state.intRef} onChange={this.onInput} maxLength='15' required></input></td>
                 </tr>
                 <tr>

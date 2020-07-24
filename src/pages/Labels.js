@@ -7,17 +7,10 @@ import RowLabel from './rowLabel.js'
 
 class Labels extends Component {
   state={
-    plastics: [...this.props.plastics],
-    labels: this.props.labels
+    plastics: [...this.props.plastics]
   }
 
-  // days_of_a_year(year) {
-  //   return isLeapYear(year) ? 366 : 365;
-  // }
-
-  // isLeapYear(year) {
-  //   return year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0);
-  // }
+  
 
   formatDate(format){
     let formatDate
@@ -64,20 +57,34 @@ class Labels extends Component {
     return h >= 6 && h <= 17? 'M' : 'T'
   }
 
+ 
+
   renderLabels = () =>{
-    return this.state.plastics.map( ({_id, header, color, text, intRef, pieces, machine}, index) =>
-      <RowLabel
-      key={_id}
-      _id={_id} 
-      header={header} 
-      color={color} 
-      text={text} 
-      intRef={intRef} 
-      pieces={pieces}
-      machine={machine} 
-      index={index+1} 
-      lot={this.setLot(_id, 'plastics')}></RowLabel>
-    )
+    return this.state.plastics.map( ({_id, header, color, text, intRef, pieces, machine}, index) =>{
+
+      const ins = this.props.setInspector.find( item => item._id === _id  && item.inspector )
+      const inspector = ins ? ins.inspector : '';
+      const op = this.props.setOperator.find( item => item._id === _id  && item.operator )
+      const operator = op ? op.operator : '';
+      
+      return <RowLabel
+        key={_id}
+        _id={_id} 
+        header={header} 
+        color={color} 
+        text={text} 
+        intRef={intRef} 
+        pieces={pieces}
+        machine={machine} 
+        index={index+1}
+        profiles={this.props.profiles}
+        newInspector={this.props.newInspector}
+        newOperator={this.props.newOperator} 
+        inspector={inspector}
+        operator={operator}
+        lot={this.setLot(_id, 'plastics')}>
+      </RowLabel>
+    })
   }
 
     render(){
@@ -88,10 +95,12 @@ class Labels extends Component {
             <tr>
               <th className='table_header_row'>#</th>
               <th className='table_header_row'>Header</th>
-              <th className='table_header_row'>Reference</th>
+              <th className='table_header_row'>Part Num</th>
               <th className='table_header_row'>Pieces</th>
               <th className='table_header_row'>Machine</th>
-              <th className='table_header_row'>Lot Number</th>
+              <th className='table_header_row'>Lot Num</th>
+              <th className='table_header_row'>Inspector</th>
+              <th className='table_header_row'>Operator</th>
               <th className='table_header_row'><Link to="/new"><button>New Label</button></Link></th>
             </tr>
           </thead>

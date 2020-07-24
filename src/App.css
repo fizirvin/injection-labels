@@ -220,3 +220,17 @@ body{
 }
 
 
+
+.operator{
+  background-color: yellow;
+}
+
+.inspector{
+  background-color: green;
+}
+
+.leader{
+  background-color: orangered;
+}
+
+

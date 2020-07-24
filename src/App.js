@@ -7,6 +7,10 @@ import Label from './pages/Label'
 import EditLabel from './pages/EditLabel'
 import modifyLabel from './pages/modifyLabel.js'
 
+import initialQuery from './queries/initialQuery'
+import workersQuery from './queries/workersQuery'
+import { url, opts, hr_server, hr_opts } from './config/index'
+
 import './app.css';
 
 class App extends Component {
@@ -14,45 +18,26 @@ class App extends Component {
     server: 'https://injection-labels-server.irvinfiz.now.sh/graph',
     labels:[],
     plastics: [],
+    profiles: [],
     labelMessage: '',
-    plasticMessage: ''
-
+    plasticMessage: '',
+    setInspector: [{_id: '5f10a119fd2b160008388f77', inspector: 'B005'}],
+    setOperator: [{_id: '5f10a119fd2b160008388f77', operator: 'B005'}]
   }
 
   async componentDidMount(){
-    const query = `query{
-      labels {
-        _id
-        header
-        intRef
-        clientRef
-        certification
-        pieces
-        color
-        text
-        machine
-      }
-      plastics {
-        _id
-        header
-        intRef
-        pieces
-        color
-        text
-        machine
-      }
-    }`
-
-    const url = this.state.server;
-    const opts = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query })
-    };
+   
+    opts.body = JSON.stringify(initialQuery)
     const res = await fetch(url, opts);
     const data = await res.json();
+
     
-    this.setState({labels: data.data.labels, plastics: data.data.plastics })
+    workersQuery.variables = { team: 'amealco' }
+    hr_opts.body = JSON.stringify(workersQuery)
+    const hr_res = await fetch(hr_server, hr_opts);
+    const hr_data = await hr_res.json();
+    
+    return this.setState({labels: data.data.labels, plastics: data.data.plastics, profiles: hr_data.data.profilesLabels })
   }
 
   newLabel = async (item) =>{
@@ -166,6 +151,19 @@ class App extends Component {
     return this.setState({plasticMessage: ''})
   }
 
+  
+  newInspector = ({_id, inspector}) =>{
+    const ins = this.state.setInspector.filter( item => item._id !== _id )
+    const setInspector = [...ins, {_id, inspector}]
+    return this.setState({setInspector})
+  }
+
+  newOperator = ({_id, operator }) =>{
+    const op = this.state.setOperator.filter( item => item._id !== _id )
+    const setOperator = [...op, {_id, operator}]
+    
+    return this.setState({setOperator})
+  }
 
 
   render(){
@@ -175,12 +173,17 @@ class App extends Component {
           <div className="content">
             <Switch>
               <Route path="/" exact component={ props => ( <Labels {...props} 
-                labels={this.state.labels} plastics={this.state.plastics}/> )} 
+                profiles={this.state.profiles} plastics={this.state.plastics} 
+                newInspector={this.newInspector}
+                newOperator={this.newOperator}
+                setInspector={this.state.setInspector}
+                setOperator={this.state.setOperator}
+                /> )} 
               />
               <Route path="/new" exact component={ props => ( <NewLabel {...props} 
               labels={this.state.labels} newLabel={this.newLabel} newPlastic={this.newPlastic} onClose={this.onClose} message={this.state.plasticMessage}/> )} 
               />
-              <Route path="/label/:id/:lot/:pieces" exact component={ props => ( <Label {...props} 
+              <Route path="/label/:id/:lot/:pieces/:inspector/:operator" exact component={ props => ( <Label {...props} 
                plastics={this.state.plastics}/> )} 
               />
               <Route path="/label/edit/:id" exact component={ props => ( <EditLabel {...props} 
