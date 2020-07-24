@@ -21,8 +21,8 @@ class App extends Component {
     profiles: [],
     labelMessage: '',
     plasticMessage: '',
-    setInspector: [{_id: '5f10a119fd2b160008388f77', inspector: 'B005'}],
-    setOperator: [{_id: '5f10a119fd2b160008388f77', operator: 'B005'}]
+    setInspector: [],
+    setOperator: []
   }
 
   async componentDidMount(){
