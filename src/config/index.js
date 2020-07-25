@@ -1,4 +1,5 @@
-const url = 'https://injection-labels-server.irvinfiz.now.sh/graph';
+const url = 'https://injection-labels-server.adrian-injection.vercel.app/graph';
+// const url = 'http://localhost:4000/graph';
 const opts = {
     method: "POST",
     headers: { "Content-Type": "application/json" }

@@ -91,7 +91,7 @@ class RowLabel extends Component {
 
   renderRowLabel = ({index, _id, header, color, text, intRef }) =>{
     return (
-      <tr key={_id}>
+      <tr key={_id} className='row_label_selected'>
         <td className='table_body_row'>{index}</td>
         <td className='table_body_row' style={{backgroundColor: `${color}`, color: `${text}`}}>{header}</td>
         <td className='table_body_row'>{intRef}</td>

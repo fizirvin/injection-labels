@@ -1,14 +1,28 @@
-const initialQuery = { query: `query{
-    labels {
+const initialQuery = { query: `query
+  TeamLabels($amealco: String, $varias: String ){
+    amealco: configs(team:$amealco){
       _id
-      header
-      intRef
-      clientRef
-      certification
-      pieces
-      color
-      text
-      machine
+      team
+      operators {
+        _id
+        operator
+      }
+      inspectors {
+        _id
+        inspector
+      }
+    }
+    varias: configs(team:$varias){
+      _id
+      team
+      operators {
+        _id
+        operator
+      }
+      inspectors {
+        _id
+        inspector
+      }
     }
     plastics {
       _id
@@ -19,7 +33,7 @@ const initialQuery = { query: `query{
       text
       machine
     }
-  
-}`};
+  }`
+};
 
 export default initialQuery

@@ -7,7 +7,8 @@ import RowLabel from './rowLabel.js'
 
 class Labels extends Component {
   state={
-    plastics: [...this.props.plastics]
+    plastics: [...this.props.plastics],
+    button: false
   }
 
   
@@ -128,6 +129,11 @@ class Labels extends Component {
     return this.props.changeTeam(team)
   }
 
+  saveConfig = (e) =>{
+    e.preventDefault();
+    this.setState({button: true})
+    return this.props.updateConfig();
+  }
   
 
   renderButton = ( ) =>{
@@ -148,6 +154,7 @@ class Labels extends Component {
         <div className='controls'> 
           <h3 className='table_title'>Labels Table</h3>
           {this.renderButton()}
+          <button onClick={this.saveConfig} disabled={this.state.button}>Save configuration</button>
         </div>
         <table className='labels_table'>
           <thead className='table_header'>

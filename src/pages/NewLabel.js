@@ -20,9 +20,8 @@ class NewLabel extends Component {
 
     onSubmit = e =>{
         e.preventDefault();
-        if(this.state.type === 'client') { return this.props.newLabel(this.state);}
-        else if(this.state.type === 'plastic') { return this.props.newPlastic(this.state); }
-      }
+         return this.props.newPlastic(this.state);
+    }
 
     onInput = e =>{
         this.setState({[e.target.name]: e.target.value})    
