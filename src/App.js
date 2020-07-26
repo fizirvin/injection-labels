@@ -159,11 +159,37 @@ class App extends Component {
     return this.setState({setAmealcoInspector})
   }
 
+  resetAmealcoInspector = (_id) =>{
+    const ins = this.state.setAmealcoInspector.filter( item => item._id !== _id )
+    const setAmealcoInspector = [...ins ]
+    return this.setState({setAmealcoInspector})
+  }
+
   newAmealcoOperator = ({_id, operator }) =>{
     const op = this.state.setAmealcoOperator.filter( item => item._id !== _id )
     const setAmealcoOperator = [...op, {_id, operator}]
     
     return this.setState({setAmealcoOperator})
+  }
+
+  resetAmealcoOperator = (_id) =>{
+    const op = this.state.setAmealcoOperator.filter( item => item._id !== _id )
+    const setAmealcoOperator = [...op ]
+    return this.setState({setAmealcoOperator})
+  }
+
+  resetAmealco = (_id)=>{
+    const ins = this.state.setAmealcoInspector.filter( item => item._id !== _id )
+    const op = this.state.setAmealcoOperator.filter( item => item._id !== _id )
+    const setAmealcoInspector = [...ins ]
+    const setAmealcoOperator = [...op ]
+    return this.setState({setAmealcoOperator, setAmealcoInspector})
+  }
+
+  resetAllAmealco = ()=>{
+    const setAmealcoInspector = [ ]
+    const setAmealcoOperator = [ ]
+    return this.setState({setAmealcoOperator, setAmealcoInspector})
   }
 
   newVariasInspector = ({_id, inspector}) =>{
@@ -172,11 +198,37 @@ class App extends Component {
     return this.setState({setVariasInspector})
   }
 
+  resetVariasInspector = ( _id ) =>{
+    const ins = this.state.setVariasInspector.filter( item => item._id !== _id )
+    const setVariasInspector = [...ins ]
+    return this.setState({setVariasInspector})
+  }
+
   newVariasOperator = ({_id, operator }) =>{
     const op = this.state.setVariasOperator.filter( item => item._id !== _id )
     const setVariasOperator = [...op, {_id, operator}]
     
     return this.setState({setVariasOperator})
+  }
+
+  resetVariasOperator = (_id ) =>{
+    const op = this.state.setVariasOperator.filter( item => item._id !== _id )
+    const setVariasOperator = [...op ]
+    return this.setState({setVariasOperator})
+  }
+
+  resetVarias = (_id) =>{
+    const ins = this.state.setVariasInspector.filter( item => item._id !== _id )
+    const setVariasInspector = [...ins ]
+    const op = this.state.setVariasOperator.filter( item => item._id !== _id )
+    const setVariasOperator = [...op ]
+    return this.setState({setVariasInspector, setVariasOperator})
+  }
+
+  resetAllVarias = () =>{
+    const setVariasInspector = []
+    const setVariasOperator = []
+    return this.setState({setVariasInspector, setVariasOperator})
   }
 
   changeTeam=(team)=>{
@@ -196,16 +248,24 @@ class App extends Component {
                 varias={this.state.varias} 
                 plastics={this.state.plastics} 
                 newAmealcoInspector={this.newAmealcoInspector}
+                resetAmealcoInspector={this.resetAmealcoInspector}
                 newAmealcoOperator={this.newAmealcoOperator}
+                resetAmealcoOperator={this.resetAmealcoOperator}
                 setAmealcoInspector={this.state.setAmealcoInspector}
                 setAmealcoOperator={this.state.setAmealcoOperator}
                 newVariasInspector={this.newVariasInspector}
+                resetVariasInspector={this.resetVariasInspector}
                 newVariasOperator={this.newVariasOperator}
+                resetVariasOperator={this.resetVariasOperator}
                 setVariasInspector={this.state.setVariasInspector}
                 setVariasOperator={this.state.setVariasOperator}
                 changeTeam={this.changeTeam}
                 team={this.state.team}
                 updateConfig={this.updateConfig}
+                 resetAmealco={this.resetAmealco}
+                 resetVarias={this.resetVarias}
+                 resetAllAmealco={this.resetAllAmealco}
+                 resetAllVarias={this.resetAllVarias} 
                 /> )} 
               />
               <Route path="/new" exact component={ props => ( <NewLabel {...props} 

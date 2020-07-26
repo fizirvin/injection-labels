@@ -237,7 +237,7 @@ body{
 
 .controls{
   display: flex;
-  width: 50%;
+  width: 90%;
   justify-content: space-between;
   
   margin-left: 15px;
