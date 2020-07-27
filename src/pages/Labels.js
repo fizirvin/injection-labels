@@ -9,6 +9,7 @@ class Labels extends Component {
   state={
     plastics: [...this.props.plastics],
     button: false,
+    resetButton: false,
     checked: '',
     edit: true
   }
@@ -99,7 +100,7 @@ class Labels extends Component {
         newInspector={this.props.newAmealcoInspector}
         resetInspector={this.props.resetAmealcoInspector}
         newOperator={this.props.newAmealcoOperator} 
-        resetOperator={this.props.resetAmealcoInspector}
+        resetOperator={this.props.resetAmealcoOperator}
         inspector={inspector}
         operator={operator}
         lot={this.setLot(_id, 'plastics')}
@@ -155,15 +156,21 @@ class Labels extends Component {
     this.setState({button: true})
     return this.props.updateConfig();
   }
+
+  resetConfig = (e) =>{
+    e.preventDefault();
+    this.setState({resetButton: true})
+    return this.props.resetConfig();
+  }
   
-  onReset = (e) =>{
+  onClean = (e) =>{
     e.preventDefault();
     const _id = this.state.checked
     if(this.props.team === 'varias'){
       const ins = this.props.setVariasInspector.find( item => item._id === _id  && item.inspector )
       const op = this.props.setVariasOperator.find( item => item._id === _id  && item.operator )
       if(ins || op){
-        return this.props.resetVarias(_id)
+        return this.props.cleanVarias(_id)
       }
       else { return console.log('nada que resetear')}
     }
@@ -171,20 +178,19 @@ class Labels extends Component {
       const ins = this.props.setAmealcoInspector.find( item => item._id === _id  && item.inspector )
       const op = this.props.setAmealcoOperator.find( item => item._id === _id  && item.operator )
       if(ins || op){
-        return this.props.resetAmealco(_id)
+        return this.props.cleanAmealco(_id)
       }
       else { return console.log('nada que resetear')}
     }
   }
 
-  onResetAll = (e) =>{
+  onCleanAll = (e) =>{
     e.preventDefault();
-    const _id = this.state.checked
     if(this.props.team === 'varias'){
       const ins = this.props.setVariasInspector.length > 0
       const op = this.props.setVariasOperator.length > 0
       if(ins || op){
-        return this.props.resetAllVarias()
+        return this.props.cleanAllVarias()
       }
       else { return console.log('nada que resetear')}
     }
@@ -192,7 +198,7 @@ class Labels extends Component {
       const ins = this.props.setAmealcoInspector.length > 0
       const op = this.props.setAmealcoOperator.length > 0
       if(ins || op){
-        return this.props.resetAllAmealco()
+        return this.props.cleanAllAmealco()
       }
       else { return console.log('nada que resetear')}
     }
@@ -216,10 +222,13 @@ class Labels extends Component {
         <div className='controls'> 
           <h3 className='table_title'>Labels Table</h3>
           {this.renderButton()}
-          <button onClick={this.saveConfig} disabled={this.state.button}>Save configuration</button>
           <div>
-            <button onClick={this.onReset} disabled={this.state.edit}>Reset One</button>
-            <button onClick={this.onResetAll}>Reset All</button>
+            <button onClick={this.saveConfig} disabled={this.state.button}>Save configuration</button>
+            <button onClick={this.resetConfig} disabled={this.state.resetButton}>Reset configuration</button>
+          </div>
+          <div>
+            <button onClick={this.onClean} disabled={this.state.edit}>Clean One</button>
+            <button onClick={this.onCleanAll}>Clean All</button>
           </div>
           <div>
             <Link to="/new"><button>New Label</button></Link>

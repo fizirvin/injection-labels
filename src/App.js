@@ -50,8 +50,13 @@ class App extends Component {
     const setVariasOperator = data.data.varias.operators
     const amealcoId = data.data.amealco._id
     const variasId = data.data.varias._id
+    const resetAmealcoInspector = data.data.amealco.inspectors
+    const resetAmealcoOperator = data.data.amealco.operators
     
-    return this.setState({ amealcoId, variasId, setVariasInspector, setVariasOperator, setAmealcoOperator, setAmealcoInspector, plastics: data.data.plastics, amealco: hr_data.data.amealco, varias: hr_data.data.varias })
+    const resetVariasInspector = data.data.varias.inspectors
+    const resetVariasOperator = data.data.varias.operators
+    
+    return this.setState({ amealcoId, variasId, setVariasInspector, setVariasOperator, setAmealcoOperator, setAmealcoInspector, resetVariasInspector, resetVariasOperator, resetAmealcoOperator, resetAmealcoInspector, plastics: data.data.plastics, amealco: hr_data.data.amealco, varias: hr_data.data.varias })
   }
 
   
@@ -126,7 +131,9 @@ class App extends Component {
       } else{
         const setVariasInspector = data.data.updateConfig.inspectors
         const setVariasOperator = data.data.updateConfig.operators
-        return this.setState({ setVariasInspector, setVariasOperator, configMessage: 'sucess'});
+        const resetVariasInspector = data.data.updateConfig.inspectors
+        const resetVariasOperator = data.data.updateConfig.operators
+        return this.setState({ setVariasInspector, setVariasOperator, resetVariasInspector, resetVariasOperator, configMessage: 'sucess'});
       }
     }
     else if( this.state.team === 'amealco'){
@@ -143,8 +150,23 @@ class App extends Component {
       } else{
         const setAmealcoInspector = data.data.updateConfig.inspectors
         const setAmealcoOperator = data.data.updateConfig.operators
-        return this.setState({ setAmealcoInspector, setAmealcoOperator, configMessage: 'sucess'});
+        const resetAmealcoInspector = data.data.updateConfig.inspectors
+        const resetAmealcoOperator = data.data.updateConfig.operators
+        return this.setState({ setAmealcoInspector, setAmealcoOperator, resetAmealcoInspector, resetAmealcoOperator, configMessage: 'sucess'});
       }
+    }
+  }
+
+  resetConfig = () =>{
+    if(this.state.team === 'varias'){
+      const setVariasInspector = this.state.resetVariasInspector
+      const setVariasOperator = this.state.resetVariasOperator
+      return this.setState({ setVariasInspector, setVariasOperator });
+    }
+    else if(this.state.team === 'amealco'){
+      const setAmealcoInspector = this.state.resetAmealcoInspector
+      const setAmealcoOperator = this.state.resetAmealcoOperator
+      return this.setState({ setAmealcoInspector, setAmealcoOperator });
     }
   }
 
@@ -178,7 +200,7 @@ class App extends Component {
     return this.setState({setAmealcoOperator})
   }
 
-  resetAmealco = (_id)=>{
+  cleanAmealco = (_id)=>{
     const ins = this.state.setAmealcoInspector.filter( item => item._id !== _id )
     const op = this.state.setAmealcoOperator.filter( item => item._id !== _id )
     const setAmealcoInspector = [...ins ]
@@ -186,7 +208,7 @@ class App extends Component {
     return this.setState({setAmealcoOperator, setAmealcoInspector})
   }
 
-  resetAllAmealco = ()=>{
+  cleanAllAmealco = ()=>{
     const setAmealcoInspector = [ ]
     const setAmealcoOperator = [ ]
     return this.setState({setAmealcoOperator, setAmealcoInspector})
@@ -217,7 +239,7 @@ class App extends Component {
     return this.setState({setVariasOperator})
   }
 
-  resetVarias = (_id) =>{
+  cleanVarias = (_id) =>{
     const ins = this.state.setVariasInspector.filter( item => item._id !== _id )
     const setVariasInspector = [...ins ]
     const op = this.state.setVariasOperator.filter( item => item._id !== _id )
@@ -225,7 +247,7 @@ class App extends Component {
     return this.setState({setVariasInspector, setVariasOperator})
   }
 
-  resetAllVarias = () =>{
+  cleanAllVarias = () =>{
     const setVariasInspector = []
     const setVariasOperator = []
     return this.setState({setVariasInspector, setVariasOperator})
@@ -262,10 +284,11 @@ class App extends Component {
                 changeTeam={this.changeTeam}
                 team={this.state.team}
                 updateConfig={this.updateConfig}
-                 resetAmealco={this.resetAmealco}
-                 resetVarias={this.resetVarias}
-                 resetAllAmealco={this.resetAllAmealco}
-                 resetAllVarias={this.resetAllVarias} 
+                resetConfig={this.resetConfig}
+                 cleanAmealco={this.cleanAmealco}
+                 cleanVarias={this.cleanVarias}
+                 cleanAllAmealco={this.cleanAllAmealco}
+                 cleanAllVarias={this.cleanAllVarias} 
                 /> )} 
               />
               <Route path="/new" exact component={ props => ( <NewLabel {...props} 
