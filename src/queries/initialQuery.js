@@ -11,6 +11,10 @@ const initialQuery = { query: `query
         _id
         inspector
       }
+      quantity {
+        _id
+        quantity
+      }
     }
     varias: configs(team:$varias){
       _id
@@ -22,6 +26,10 @@ const initialQuery = { query: `query
       inspectors {
         _id
         inspector
+      }
+      quantity {
+        _id
+        quantity
       }
     }
     plastics {

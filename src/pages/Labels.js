@@ -85,6 +85,8 @@ class Labels extends Component {
       const inspector = ins ? ins.inspector : '';
       const op = this.props.setAmealcoOperator.find( item => item._id === _id  && item.operator )
       const operator = op ? op.operator : '';
+      // const qu = this.props.setAmealcoQuantity.find( item => item._id === _id  && item.quantity )
+      // const quantity = qu ? qu.quantity : '16';
       const check = this.state.checked === _id ? true : false
       return <RowLabel
         key={_id}
@@ -101,6 +103,8 @@ class Labels extends Component {
         resetInspector={this.props.resetAmealcoInspector}
         newOperator={this.props.newAmealcoOperator} 
         resetOperator={this.props.resetAmealcoOperator}
+        newQuantity={this.props.newAmealcoQuantity}
+        resetQuantity={this.props.resetAmealcoQuantity}
         inspector={inspector}
         operator={operator}
         lot={this.setLot(_id, 'plastics')}
@@ -119,6 +123,8 @@ class Labels extends Component {
       const inspector = ins ? ins.inspector : '';
       const op = this.props.setVariasOperator.find( item => item._id === _id  && item.operator )
       const operator = op ? op.operator : '';
+      // const qu = this.props.setVariasQuantity.find( item => item._id === _id  && item.quantity )
+      // const quantity = qu ? qu.quantity : '16';
       const check = this.state.checked === _id ? true : false
       return <RowLabel
         key={_id}
@@ -135,6 +141,8 @@ class Labels extends Component {
         resetInspector={this.props.resetVariasInspector}
         newOperator={this.props.newVariasOperator} 
         resetOperator={this.props.resetVariasOperator}
+        newQuantity={this.props.newVariasQuantity}
+        resetQuantity={this.props.resetVariasQuantity}
         inspector={inspector}
         operator={operator}
         lot={this.setLot(_id, 'plastics')}
@@ -169,7 +177,8 @@ class Labels extends Component {
     if(this.props.team === 'varias'){
       const ins = this.props.setVariasInspector.find( item => item._id === _id  && item.inspector )
       const op = this.props.setVariasOperator.find( item => item._id === _id  && item.operator )
-      if(ins || op){
+      const qu = this.props.setVariasQuantity.find( item => item._id === _id  && item.quantity )
+      if(ins || op || qu ){
         return this.props.cleanVarias(_id)
       }
       else { return console.log('nada que resetear')}
@@ -177,7 +186,8 @@ class Labels extends Component {
     else {
       const ins = this.props.setAmealcoInspector.find( item => item._id === _id  && item.inspector )
       const op = this.props.setAmealcoOperator.find( item => item._id === _id  && item.operator )
-      if(ins || op){
+      const qu = this.props.setAmealcoQuantity.find( item => item._id === _id  && item.quantity )
+      if(ins || op || qu){
         return this.props.cleanAmealco(_id)
       }
       else { return console.log('nada que resetear')}
@@ -189,7 +199,8 @@ class Labels extends Component {
     if(this.props.team === 'varias'){
       const ins = this.props.setVariasInspector.length > 0
       const op = this.props.setVariasOperator.length > 0
-      if(ins || op){
+      const qu = this.props.setVariasQuantity.length > 0
+      if(ins || op || qu){
         return this.props.cleanAllVarias()
       }
       else { return console.log('nada que resetear')}
@@ -197,7 +208,8 @@ class Labels extends Component {
     else {
       const ins = this.props.setAmealcoInspector.length > 0
       const op = this.props.setAmealcoOperator.length > 0
-      if(ins || op){
+      const qu = this.props.setAmealcoQuantity.length > 0
+      if(ins || op || qu){
         return this.props.cleanAllAmealco()
       }
       else { return console.log('nada que resetear')}
@@ -244,10 +256,12 @@ class Labels extends Component {
               <th className='table_header_row'>Part Num</th>
               <th className='table_header_row'>Pieces</th>
               <th className='table_header_row'>Machine</th>
-              <th className='table_header_row'>Lot Num</th>
+              <th className='table_header_row'>Lot</th>
               <th className='table_header_row'>Inspector</th>
               <th className='table_header_row'>Operator</th>
-              <th className='table_header_row'></th>
+              <th className='table_header_row'>Qty</th>
+              <th className='table_header_row'>Start</th>
+              <th className='table_header_row'>View</th>
             </tr>
           </thead>
           <tbody>

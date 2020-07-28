@@ -4,12 +4,16 @@ const modifyConfig = { query: `mutation
             _id
             team
             operators {
-            _id
-            operator
+                _id
+                operator
             }
             inspectors {
-            _id
-            inspector
+                _id
+                inspector
+            }
+            quantity {
+                _id
+                quantity
             }
         }
     }`

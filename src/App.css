@@ -44,7 +44,7 @@ body{
 
 .table_body_row{
   border: solid 1px;
-  padding-left: 5px;
+  padding-left: 1px;
 }
 
 .table_header{
@@ -52,13 +52,13 @@ body{
 }
 
 .table_header_row{
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
   border: solid 1px;
 }
 
 .input_pieces{
-  width: 5em;
+  width: 4em;
 }
 
 .table_title{
@@ -252,5 +252,36 @@ body{
   background-color: rgba(0, 0, 255, 0.534);
 }
 
+.quantity{
+  width: 3em;
+  height: 1.2em;
+}
+
+.start{
+  width: 3em;
+}
+
+.number{
+  font-size: 80%;
+  padding-left: 8px;
+  padding-right: 8px;
+  text-align: center;
+}
+
+.check{
+  padding-left: 2px;
+  padding-right: 2px;
+  text-align: center;
+}
+
+.text_row{
+  padding-left: 8px;
+  padding-right: 8px;
+  text-align: left;
+}
+
+.input_lot{
+  width: 6.5em;
+}
 
 

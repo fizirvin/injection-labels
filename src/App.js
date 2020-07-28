@@ -25,6 +25,14 @@ class App extends Component {
     setAmealcoOperator: [],
     setVariasInspector: [],
     setVariasOperator: [],
+    setVariasQuantity: [],
+    setAmealcoQuantity: [],
+    resetAmealcoInspector: [],
+    resetAmealcoOperator: [],
+    resetVariasInspector: [],
+    resetVariasOperator: [],
+    resetVariasQuantity: [],
+    resetAmealcoQuantity: [],
     team: 'varias',
     amealcoId: '',
     variasId: ''
@@ -48,6 +56,10 @@ class App extends Component {
     
     const setVariasInspector = data.data.varias.inspectors
     const setVariasOperator = data.data.varias.operators
+
+    const setVariasQuantity = data.data.varias.quantity
+    const setAmealcoQuantity = data.data.varias.quantity
+
     const amealcoId = data.data.amealco._id
     const variasId = data.data.varias._id
     const resetAmealcoInspector = data.data.amealco.inspectors
@@ -56,7 +68,9 @@ class App extends Component {
     const resetVariasInspector = data.data.varias.inspectors
     const resetVariasOperator = data.data.varias.operators
     
-    return this.setState({ amealcoId, variasId, setVariasInspector, setVariasOperator, setAmealcoOperator, setAmealcoInspector, resetVariasInspector, resetVariasOperator, resetAmealcoOperator, resetAmealcoInspector, plastics: data.data.plastics, amealco: hr_data.data.amealco, varias: hr_data.data.varias })
+    const resetVariasQuantity = data.data.varias.quantity
+    const resetAmealcoQuantity = data.data.varias.quantity
+    return this.setState({ amealcoId, variasId, setVariasInspector, setVariasOperator, setAmealcoOperator, setAmealcoInspector, setVariasQuantity, setAmealcoQuantity, resetVariasQuantity, resetAmealcoQuantity, resetVariasInspector, resetVariasOperator, resetAmealcoOperator, resetAmealcoInspector, plastics: data.data.plastics, amealco: hr_data.data.amealco, varias: hr_data.data.varias })
   }
 
   
@@ -131,9 +145,11 @@ class App extends Component {
       } else{
         const setVariasInspector = data.data.updateConfig.inspectors
         const setVariasOperator = data.data.updateConfig.operators
+        const setVariasQuantity = data.data.updateConfig.quantity
         const resetVariasInspector = data.data.updateConfig.inspectors
         const resetVariasOperator = data.data.updateConfig.operators
-        return this.setState({ setVariasInspector, setVariasOperator, resetVariasInspector, resetVariasOperator, configMessage: 'sucess'});
+        const resetVariasQuantity = data.data.updateConfig.quantity
+        return this.setState({ setVariasInspector, setVariasOperator, setVariasQuantity, resetVariasQuantity, resetVariasInspector, resetVariasOperator, configMessage: 'sucess'});
       }
     }
     else if( this.state.team === 'amealco'){
@@ -150,9 +166,11 @@ class App extends Component {
       } else{
         const setAmealcoInspector = data.data.updateConfig.inspectors
         const setAmealcoOperator = data.data.updateConfig.operators
+        const setAmealcoQuantity = data.data.updateConfig.quantity
         const resetAmealcoInspector = data.data.updateConfig.inspectors
         const resetAmealcoOperator = data.data.updateConfig.operators
-        return this.setState({ setAmealcoInspector, setAmealcoOperator, resetAmealcoInspector, resetAmealcoOperator, configMessage: 'sucess'});
+        const resetAmealcoQuantity = data.data.updateConfig.quantity
+        return this.setState({ setAmealcoInspector, setAmealcoOperator, setAmealcoQuantity, resetAmealcoQuantity, resetAmealcoInspector, resetAmealcoOperator, configMessage: 'sucess'});
       }
     }
   }
@@ -161,12 +179,14 @@ class App extends Component {
     if(this.state.team === 'varias'){
       const setVariasInspector = this.state.resetVariasInspector
       const setVariasOperator = this.state.resetVariasOperator
-      return this.setState({ setVariasInspector, setVariasOperator });
+      const setVariasQuantity = this.state.resetVariasQuantity
+      return this.setState({ setVariasInspector, setVariasOperator, setVariasQuantity  });
     }
     else if(this.state.team === 'amealco'){
       const setAmealcoInspector = this.state.resetAmealcoInspector
       const setAmealcoOperator = this.state.resetAmealcoOperator
-      return this.setState({ setAmealcoInspector, setAmealcoOperator });
+      const setAmealcoQuantity = this.state.resetAmealcoQuantity
+      return this.setState({ setAmealcoInspector, setAmealcoOperator, setAmealcoQuantity });
     }
   }
 
@@ -200,18 +220,34 @@ class App extends Component {
     return this.setState({setAmealcoOperator})
   }
 
+  newAmealcoQuantity = ({_id, quantity }) =>{
+    const qu = this.state.setAmealcoQuantity.filter( item => item._id !== _id )
+    const setAmealcoQuantity = [...qu, {_id, quantity}]
+    
+    return this.setState({setAmealcoQuantity})
+  }
+
+  resetAmealcoQuantity = (_id) =>{
+    const qu = this.state.setAmealcoQuantity.filter( item => item._id !== _id )
+    const setAmealcoQuantity = [...qu ]
+    return this.setState({setAmealcoQuantity})
+  }
+
   cleanAmealco = (_id)=>{
     const ins = this.state.setAmealcoInspector.filter( item => item._id !== _id )
     const op = this.state.setAmealcoOperator.filter( item => item._id !== _id )
+    const qu = this.state.setAmealcoQuantity.filter( item => item._id !== _id )
     const setAmealcoInspector = [...ins ]
     const setAmealcoOperator = [...op ]
-    return this.setState({setAmealcoOperator, setAmealcoInspector})
+    const setAmealcoQuantity = [...qu ]
+    return this.setState({setAmealcoOperator, setAmealcoInspector, setAmealcoQuantity})
   }
 
   cleanAllAmealco = ()=>{
     const setAmealcoInspector = [ ]
     const setAmealcoOperator = [ ]
-    return this.setState({setAmealcoOperator, setAmealcoInspector})
+    const setAmealcoQuantity = [ ]
+    return this.setState({setAmealcoOperator, setAmealcoInspector, setAmealcoQuantity})
   }
 
   newVariasInspector = ({_id, inspector}) =>{
@@ -239,18 +275,34 @@ class App extends Component {
     return this.setState({setVariasOperator})
   }
 
+  newVariasQuantity = ({_id, quantity }) =>{
+    const qu = this.state.setVariasQuantity.filter( item => item._id !== _id )
+    const setVariasQuantity = [...qu, {_id, quantity }]
+    console.log(setVariasQuantity)
+    return this.setState({setVariasQuantity })
+  }
+
+  resetVariasQuantity = ( _id ) =>{
+    const qu = this.state.setVariasQuantity.filter( item => item._id !== _id )
+    const setVariasQuantity = [...qu ]
+    return this.setState({setVariasQuantity})
+  }
+
   cleanVarias = (_id) =>{
     const ins = this.state.setVariasInspector.filter( item => item._id !== _id )
     const setVariasInspector = [...ins ]
     const op = this.state.setVariasOperator.filter( item => item._id !== _id )
     const setVariasOperator = [...op ]
-    return this.setState({setVariasInspector, setVariasOperator})
+    const qu = this.state.setVariasQuantity.filter( item => item._id !== _id )
+    const setVariasQuantity = [...qu ]
+    return this.setState({setVariasInspector, setVariasOperator, setVariasQuantity})
   }
 
   cleanAllVarias = () =>{
     const setVariasInspector = []
     const setVariasOperator = []
-    return this.setState({setVariasInspector, setVariasOperator})
+    const setVariasQuantity = []
+    return this.setState({setVariasInspector, setVariasOperator, setVariasQuantity})
   }
 
   changeTeam=(team)=>{
@@ -270,17 +322,23 @@ class App extends Component {
                 varias={this.state.varias} 
                 plastics={this.state.plastics} 
                 newAmealcoInspector={this.newAmealcoInspector}
-                resetAmealcoInspector={this.resetAmealcoInspector}
                 newAmealcoOperator={this.newAmealcoOperator}
-                resetAmealcoOperator={this.resetAmealcoOperator}
+                newAmealcoQuantity={this.newAmealcoQuantity}
+                newVariasInspector={this.newVariasInspector}
+                newVariasOperator={this.newVariasOperator}
+                newVariasQuantity={this.newVariasQuantity}
                 setAmealcoInspector={this.state.setAmealcoInspector}
                 setAmealcoOperator={this.state.setAmealcoOperator}
-                newVariasInspector={this.newVariasInspector}
-                resetVariasInspector={this.resetVariasInspector}
-                newVariasOperator={this.newVariasOperator}
-                resetVariasOperator={this.resetVariasOperator}
+                setAmealcoQuantity={this.state.setAmealcoQuantity}
                 setVariasInspector={this.state.setVariasInspector}
                 setVariasOperator={this.state.setVariasOperator}
+                setVariasQuantity={this.state.setVariasQuantity}
+                resetAmealcoInspector={this.resetAmealcoInspector}
+                resetAmealcoOperator={this.resetAmealcoOperator}
+                resetAmealcoQuantity={this.resetAmealcoQuantity}
+                resetVariasInspector={this.resetVariasInspector}
+                resetVariasOperator={this.resetVariasOperator}
+                resetVariasQuantity={this.resetVariasQuantity}
                 changeTeam={this.changeTeam}
                 team={this.state.team}
                 updateConfig={this.updateConfig}
@@ -294,7 +352,7 @@ class App extends Component {
               <Route path="/new" exact component={ props => ( <NewLabel {...props} 
                 newPlastic={this.newPlastic} onClose={this.onClose} message={this.state.plasticMessage}/> )} 
               />
-              <Route path="/label/:id/:lot/:pieces/:inspector/:operator" exact component={ props => ( <Label {...props} 
+              <Route path="/label/:id/:lot/:pieces/:inspector/:operator/:quantity/:start" exact component={ props => ( <Label {...props} 
                plastics={this.state.plastics}/> )} 
               />
               <Route path="/label/edit/:id" exact component={ props => ( <EditLabel {...props} 
