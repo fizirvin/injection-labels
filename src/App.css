@@ -162,8 +162,8 @@ body{
 
 .row_labelA{
   font-size: .6em;
-  
-  width: 106px;
+  padding-left: 5px;
+  width: 140px;
   text-align: center;
   font-weight: bold;
 }

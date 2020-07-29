@@ -44,13 +44,13 @@ class LabelA extends Component {
           <table className='labelA_table'>
             <tbody>
             <tr>
-              <td colSpan='2' className='row_labelA'>Nº DE PARTE:</td><td colSpan='3' className='row_labelA_ref'>{this.props.intRef}</td>
+              <td className='row_labelA'>Nº DE PARTE:</td><td className='row_labelA_ref'>{this.props.intRef}</td>
             </tr>
             <tr>
-              <td colSpan='2' className='row_labelA'>Nº DE LOTE:</td><td colSpan='3' className='row_labelA_ref'>{this.props.lot}</td>
+              <td className='row_labelA'>Nº DE LOTE:</td><td className='row_labelA_ref'>{this.props.lot}</td>
             </tr>
             <tr>
-              <td colSpan='2' className='row_labelA'>CANTIDAD / N. CAJA</td><td colSpan='3' className='row_labelA_pieces'>{`${this.props.pieces}EA / ${this.props.box}`}</td>
+              <td className='row_labelA'>CANTIDAD / Nº DE CAJA:</td><td className='row_labelA_pieces'>{`${this.props.pieces}EA / ${this.props.box}`}</td>
             </tr>
             {/* <tr>
               <td colSpan='2' className='row_labelA'>Inyección plástico</td><td colSpan='1' className='row_labelA_side'></td>
