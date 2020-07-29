@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import {getDayOfYear}  from 'date-fns'
+// import {getDayOfYear}  from 'date-fns'
 import {format} from 'date-fns'
 
 import RowLabel from './rowLabel.js'
@@ -47,18 +47,18 @@ class Labels extends Component {
     else{ 
       const { machine } = label
       const date = new Date();
-      const y = format(new Date(), 'yy')
+      const y = format(new Date(), 'ddMMyyyy')
       const h = date.getHours();
-      const day = getDayOfYear(date);
+      // const day = getDayOfYear(date);
       const shift = this.shift(h);
-      const lot = String(y)+String(day)+String(machine)+shift
+      const lot = String(y)+String(machine)+shift
       
       return lot
     }
   }
 
   shift = (h) =>{
-    return h >= 6 && h <= 17? 'M' : 'T'
+    return h >= 6 && h <= 18? 'M' : 'T'
   }
 
  renderLabels = ( ) =>{
@@ -259,9 +259,9 @@ class Labels extends Component {
               <th className='table_header_row'>Lot</th>
               <th className='table_header_row'>Inspector</th>
               <th className='table_header_row'>Operator</th>
-              <th className='table_header_row'>Qty</th>
-              <th className='table_header_row'>Start</th>
-              <th className='table_header_row'>View</th>
+              <th className='table_header_row start_header'>Qty</th>
+              <th className='table_header_row start_header'>Start</th>
+              <th className='table_header_row start_header'>View</th>
             </tr>
           </thead>
           <tbody>

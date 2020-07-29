@@ -6,6 +6,7 @@ import LabelA from './labels/LabelA'
 
 class Label extends Component {
   state={
+    box: []
     
   }
 
@@ -18,10 +19,38 @@ class Label extends Component {
         return
       }
       else{
-        const { header, color, intRef, machine, text } = getLabel
+        const { header, color, intRef, text } = getLabel
+
         const lot = this.props.match.params.lot
         const pieces = this.props.match.params.pieces
-        return this.setState({header, color, intRef, machine, pieces, text, lot})
+        const operator = this.props.match.params.operator
+        const inspector = this.props.match.params.inspector
+        const quantity = parseInt(this.props.match.params.quantity)
+        const start = this.props.match.params.start
+        
+        var startNum = parseInt(start)
+        const cero = '0';
+        var box = [ ]
+
+        var i
+
+        for (i = 0; i < quantity; i++) {
+          
+          if( String(startNum).length === 1){
+            
+            const boxNum = cero+String(startNum);
+            startNum++
+            box = [...box, boxNum]
+          }
+          else{
+            const boxNum = String(startNum);
+            startNum++
+            box = [...box, boxNum]
+          }
+
+        };
+        
+        return this.setState({header, color, intRef, pieces, text, lot, box, operator, inspector})
       }
     
     }
@@ -46,20 +75,39 @@ class Label extends Component {
       window.print();
     }
 
+  renderLabels = () =>{
+    return this.state.box.map( item => {
+      const inspector = this.state.inspector === 'AL' ? '' : this.state.inspector
+      const qr = `${this.state.lot}${this.state.pieces}${inspector}${this.state.operator}${item}`
+      return <LabelA key={item} qr={qr} header={this.state.header} box={item} intRef={this.state.intRef} lot={this.state.lot} pieces={this.state.pieces} color={this.state.color} text={this.state.text}></LabelA>
+    })
+  }  
+
   render(){
+    const inspector = this.state.inspector === 'AL' ? '' : this.state.inspector
     return ReactDOM.createPortal(
         <div className="Modal_view">
           <div className="modal-content-view">
-          <Link to="/" className='close_button_view'></Link>
-          <div className='print_button_view' onClick={this.printLabel}></div>
-              <table className='label_view_table'>
+            <div className='buttons'>
+              <div>
+                {`operator: ${this.state.operator || ''} inspector: ${inspector || ''}`}
+              </div>
+              <div className={'button_view'}>
+                <Link to="/"><div className='close_button_view'></div></Link>
+                <div className='print_button_view' onClick={this.printLabel}></div>
+              </div>
+            </div>
+            <div className='labels_div'>
+              {this.renderLabels()}
+            </div>
+              {/* <table className='label_view_table'>
                 <tbody>
                   <tr><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} lot={this.state.lot} pieces={this.state.pieces} color={this.state.color} text={this.state.text}></LabelA></td><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} lot={this.state.lot} pieces={this.state.pieces} color={this.state.color} text={this.state.text}></LabelA></td><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} lot={this.state.lot} pieces={this.state.pieces} color={this.state.color} text={this.state.text}></LabelA></td><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} lot={this.state.lot} pieces={this.state.pieces} color={this.state.color} text={this.state.text}></LabelA></td></tr>
                   <tr><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} lot={this.state.lot} pieces={this.state.pieces} color={this.state.color} text={this.state.text}></LabelA></td><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} lot={this.state.lot} pieces={this.state.pieces} color={this.state.color} text={this.state.text}></LabelA></td><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} lot={this.state.lot} pieces={this.state.pieces} color={this.state.color} text={this.state.text}></LabelA></td><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} lot={this.state.lot} pieces={this.state.pieces} color={this.state.color} text={this.state.text}></LabelA></td></tr>
                   <tr><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} lot={this.state.lot} pieces={this.state.pieces} color={this.state.color} text={this.state.text}></LabelA></td><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} lot={this.state.lot} pieces={this.state.pieces} color={this.state.color} text={this.state.text}></LabelA></td><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} lot={this.state.lot} pieces={this.state.pieces} color={this.state.color} text={this.state.text}></LabelA></td><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} lot={this.state.lot} pieces={this.state.pieces} color={this.state.color} text={this.state.text}></LabelA></td></tr>
                   <tr><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} lot={this.state.lot} pieces={this.state.pieces} color={this.state.color} text={this.state.text}></LabelA></td><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} lot={this.state.lot} pieces={this.state.pieces} color={this.state.color} text={this.state.text}></LabelA></td><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} lot={this.state.lot} pieces={this.state.pieces} color={this.state.color} text={this.state.text}></LabelA></td><td className='td_label_view'><LabelA header={this.state.header} intRef={this.state.intRef} lot={this.state.lot} pieces={this.state.pieces} color={this.state.color} text={this.state.text}></LabelA></td></tr>
                 </tbody>
-              </table>
+              </table> */}
           </div>
         </div>,document.querySelector('#modal')
       );

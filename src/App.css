@@ -1,13 +1,31 @@
 body{
   -webkit-print-color-adjust: exact;
+  margin: 0;
+  padding: 0;
 }
 
-@page { size: landscape; margin: 0; }
+/* @page { size: landscape; margin: 0; } */
+
+
+  @page {
+    page-break-after: auto;
+    size: landscape; 
+    margin: 0;
+  }
+
+  @media print {
+    .Modal_view { 
+      page-break-after: auto;
+      size: landscape; 
+      margin: 0; } 
+}
+
 
 .app{
   
   
-  
+  margin: 0;
+  padding: 0;
   max-width: 99vw;
   min-width: 99vw;
 }
@@ -74,10 +92,8 @@ body{
   height: 14px;
   width: 14px;
   cursor: pointer;
-  position: relative;
   background-color: tomato;
-  top: 10px;
-  left: 950px;
+  
 }
 
 .close_button_view:hover{
@@ -92,10 +108,9 @@ body{
   height: 14px;
   width: 14px;
   cursor: pointer;
-  position: relative;
+  
   background-color: yellow;
-  top: 10px;
-  left: 960px;
+  
 }
 
 .print_button_view:hover{
@@ -104,35 +119,7 @@ body{
 
 }
 
-.Modal_view{
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 0; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100vw; /* Full width */
-  height: 100vh; /* Full height */
-  overflow: none; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.3); /* Black w/ opacity */
-}
 
-.modal-content-view {
-  display: flex;
-  background-color: #fefefe;
-  margin: auto;
-  margin-top: 0px;
-  
-  padding-right: 0;
-  border: 1px solid #888;
-  max-width: 1050px;
-  min-width: 1050px;
-  max-height: 815px;
-  min-height: 815px;
-  border-radius: 0px;
-  
-  
-}
 
 .svg_model{
   margin: 0;
@@ -158,12 +145,7 @@ body{
 }
 
 
-.model_label_A{
-  height: 180px;
-  width: 236px;
-  margin: 0;
-  padding: 0;
-}
+
 
 .label_A_header{
  
@@ -171,7 +153,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.8em;
+  font-size: 1.7em;
   font-weight: bold;
   border-bottom: solid 1px black;
   width: 100%;
@@ -210,14 +192,14 @@ body{
 
 .row_labelA_pieces{
   text-align: center;
-  font-size: 1.1em;
+  
   font-weight: bold;
 }
 
 .QRcode{
-  position: relative;
-  top: -62px;
-  left: 170px;
+  margin-left: 4%;
+  display: flex;
+  justify-content: flex-start;
   
 }
 
@@ -253,12 +235,16 @@ body{
 }
 
 .quantity{
-  width: 3em;
+  width: 2.4em;
   height: 1.2em;
 }
 
 .start{
-  width: 3em;
+  width: 2.4em;
+}
+
+.start_header{
+  font-size: 85%;
 }
 
 .number{
@@ -281,7 +267,78 @@ body{
 }
 
 .input_lot{
-  width: 6.5em;
+  width: 7.5em;
 }
 
 
+
+
+
+.content{
+  padding: 0;
+  margin: 0;
+  
+}
+
+.Modal_view{
+  
+  z-index: 1; /* Sit on top */
+  padding-top: 0; /* Location of the box */
+ 
+  width: 100vw; /* Full width */
+   /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0); /* Black w/ opacity */
+}
+
+.modal-content-view {
+  display: block;
+  background-color: white;
+  margin: auto;
+  margin-top: 0px;
+  
+  max-width: 1050px;
+  min-width: 1050px;
+  
+  border-radius: 0px;
+  padding-right: 0;
+  padding-left: 0;
+  
+}
+
+.buttons{
+  margin-left: 5%;
+  
+  font-size: .7em;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 3%;
+  margin-top: 2px;
+}
+
+.button_view{
+  display: flex;
+}
+
+.labels_div{
+  display: flex;
+  flex-wrap: wrap;
+  width: 95%;
+  margin-left: 0;
+  padding-left: 0;
+  margin: 5px auto;
+  
+}
+
+.model_label_A{
+  height: 180px;
+  width: 242px;
+  margin-left: 2px;
+  margin-right: 3px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding: 0;
+  border: solid .1px black;
+ 
+}
