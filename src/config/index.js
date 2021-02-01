@@ -12,7 +12,7 @@ const opts = {
 // const hr_server = 'https://hr-app-server.irvinfiz.now.sh/graph'
 
 // const hr_server = "http://localhost:4000/injection";
-const hr_server = "https://production-server.vercel.app/injection";
+const hr_server = "https://prod-server.herokuapp.com/injection";
 
 const hr_opts = {
   method: "POST",
